@@ -71,6 +71,7 @@ const included: [Icon, string][] = [
   [Smartphone, "Instagram Stories"],
   [Rocket, "30-day Spark Ads"],
   [Users, "Published on 4 accounts"],
+  [Facebook, "Also on Facebook Reels"],
 ];
 
 const metrics: [Icon, string, string][] = [

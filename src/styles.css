@@ -385,3 +385,4 @@ html { scroll-behavior: smooth; }
 .row-list h3 { color: var(--butter); }
 .row-list p { color: rgba(255, 237, 168, .82); }
 .row-list .ico { background: rgba(255, 237, 168, .14); color: var(--butter); }
+.icon-list li:last-child:nth-child(odd) { grid-column: 1 / -1; justify-content: center; }
