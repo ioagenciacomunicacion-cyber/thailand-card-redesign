@@ -218,6 +218,8 @@ export function RateCardPage() {
   const [activeSection, setActiveSection] = useState("offer");
   const [copied, setCopied] = useState(false);
   const dialogClose = useRef<HTMLButtonElement>(null);
+  const scrollLock = useRef<string | null>(null);
+  const lockTimer = useRef<number | undefined>(undefined);
   const activeInsightItem = activeInsight === null ? undefined : insightScreens[activeInsight];
 
   // The bar only shows once the intro is behind you, and the active item is
@@ -231,6 +233,10 @@ export function RateCardPage() {
       const edge = (bar?.offsetHeight ?? 0) + 24;
 
       setShowNavigation(y > 40 && activeInsight === null);
+      if (scrollLock.current) {
+        setActiveSection(scrollLock.current);
+        return;
+      }
 
       let current = ids[0] ?? "offer";
       for (const id of ids) {
@@ -253,6 +259,29 @@ export function RateCardPage() {
     };
   }, [activeInsight]);
 
+
+  // Menu and arrow: land the section title right under the fixed bar
+  const goTo = (id: string) => (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    const section = document.getElementById(id);
+    if (!section) return;
+    const anchor = section.querySelector<HTMLElement>(".section-head") ?? section;
+    const bar = document.querySelector<HTMLElement>(".section-nav");
+    const offset = (bar?.offsetHeight ?? 0) + 16;
+    const maxTop = document.documentElement.scrollHeight - window.innerHeight;
+    const top = Math.min(maxTop, anchor.getBoundingClientRect().top + window.scrollY - offset);
+    scrollLock.current = id;
+    setActiveSection(id);
+    setShowNavigation(true);
+    window.clearTimeout(lockTimer.current);
+    const release = () => {
+      scrollLock.current = null;
+      window.removeEventListener("scrollend", release);
+    };
+    window.addEventListener("scrollend", release);
+    lockTimer.current = window.setTimeout(release, 1200);
+    window.scrollTo({ top, behavior: "smooth" });
+  };
 
   // Lightbox: close with Escape, lock page scroll while open
   useEffect(() => {
@@ -319,7 +348,7 @@ export function RateCardPage() {
           <h1>The world's #1 Thailand travel account</h1>
         </div>
 
-        <a href="#offer" className="hero-scroll" onClick={() => setShowNavigation(true)}>
+        <a href="#offer" className="hero-scroll" onClick={goTo("offer")}>
           <span className="hero-scroll-ring"><ChevronDown aria-hidden /></span>
           <span>See the rate</span>
         </a>
@@ -329,7 +358,7 @@ export function RateCardPage() {
       <nav className={showNavigation ? "section-nav is-visible" : "section-nav"} aria-label="Sections">
         <div className="section-nav-track">
           {navigation.map(([id, label, NavIcon]) => (
-            <a key={id} href={`#${id}`} className={activeSection === id ? "is-active" : ""} aria-current={activeSection === id ? "location" : undefined}>
+            <a key={id} href={`#${id}`} onClick={goTo(id)} className={activeSection === id ? "is-active" : ""} aria-current={activeSection === id ? "location" : undefined}>
               <NavIcon aria-hidden />
               <span>{label}</span>
             </a>
