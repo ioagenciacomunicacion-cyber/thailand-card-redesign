@@ -1,5 +1,6 @@
 import vanessaLogoDark from "./vanessa-logo-dark.png";
 import heroSunset from "./hero-sunset.jpg";
+import heroWatArun from "./hero-wat-arun.jpg";
 import thailandPrivilegeLogoRed from "./thailand-privilege-logo-red.png";
 
 export const rateAssets = {
@@ -42,5 +43,6 @@ export const rateAssets = {
   vanessa_logo_png: '/__l5e/assets-v1/8ca7b7f5-338b-4dd6-897d-42beba0b9b0a/vanessa-logo.png',
   vanessa_logo_dark_png: vanessaLogoDark,
   hero_sunset_jpg: heroSunset,
+  hero_wat_arun_jpg: heroWatArun,
   thailand_privilege_logo_red_png: thailandPrivilegeLogoRed,
 } as const;
