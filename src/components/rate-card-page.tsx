@@ -303,8 +303,7 @@ export function RateCardPage() {
         </div>
 
         <div className="hero-claim">
-          <h1>The largest Instagram audience<br />in the world</h1>
-          <p>Following Thailand travel content</p>
+          <h1>The world's #1 Thailand travel account</h1>
         </div>
 
         <a href="#offer" className="hero-scroll" onClick={() => setShowNavigation(true)}>
