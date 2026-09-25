@@ -71,6 +71,7 @@ const included: [Icon, string][] = [
   [Smartphone, "Instagram Stories"],
   [Rocket, "30-day Spark Ads"],
   [Users, "Published on 4 accounts"],
+  [Camera, "Instagram & TikTok Reels"],
   [Facebook, "Also on Facebook Reels"],
 ];
 
@@ -150,6 +151,18 @@ const navigation: [string, string, Icon][] = [
   ["terms", "Terms", FileCheck2],
   ["contact", "Contact", MessageCircle],
 ];
+
+function openExternal(event: { preventDefault: () => void }, href: string) {
+  event.preventDefault();
+  const win = window.open(href, "_blank", "noopener,noreferrer");
+  if (win === null) {
+    try {
+      if (window.top) window.top.location.href = href;
+    } catch {
+      window.location.href = href;
+    }
+  }
+}
 
 function WhatsAppIcon() {
   return (
@@ -287,13 +300,13 @@ export function RateCardPage() {
 
         <div className="hero-reach-card">
           <div className="hero-accounts">
-            {channels.map(([image, handle, followers]) => (
-              <div key={handle}>
+            {channels.map(([image, handle, followers, href]) => (
+              <a key={handle} href={href} target="_blank" rel="noreferrer" onClick={(e) => openExternal(e, href)}>
                 <img src={image} alt="" />
                 <span className="acc-handle">{handle}</span>
                 <strong>{followers}</strong>
                 <span className="acc-label">followers</span>
-              </div>
+              </a>
             ))}
           </div>
           <div className="hero-total">
@@ -358,7 +371,7 @@ export function RateCardPage() {
           </div>
           <div className="channel-list">
             {channels.map(([image, handle, followers, href]) => (
-              <a href={href} target="_blank" rel="noreferrer" key={handle}>
+              <a href={href} target="_blank" rel="noreferrer" key={handle} onClick={(e) => openExternal(e, href)}>
                 <img src={image} alt="" />
                 <span>{handle}</span>
                 <b>{followers}</b>
@@ -461,8 +474,8 @@ export function RateCardPage() {
           <h2>Let's create something amazing.</h2>
           <p className="footer-mail">{EMAIL}</p>
           <div className="footer-contact">
-            <a className="footer-ghost" href={WHATSAPP} target="_blank" rel="noreferrer"><WhatsAppIcon />WhatsApp</a>
-            <a className="footer-ghost" href={LINE} target="_blank" rel="noreferrer"><LineIcon />LINE</a>
+            <a className="footer-ghost" href={WHATSAPP} target="_blank" rel="noreferrer" onClick={(e) => openExternal(e, WHATSAPP)}><WhatsAppIcon />WhatsApp</a>
+            <a className="footer-ghost" href={LINE} target="_blank" rel="noreferrer" onClick={(e) => openExternal(e, LINE)}><LineIcon />LINE</a>
             <a href={`mailto:${EMAIL}?subject=Thailand%20Privilege%20Card%20x%20Vanessa%20Meraki`}><Mail aria-hidden />Email us</a>
             <button type="button" onClick={copyEmail}>{copied ? <Check aria-hidden /> : <Copy aria-hidden />}{copied ? "Copied" : "Copy email"}</button>
           </div>
