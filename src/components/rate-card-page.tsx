@@ -382,6 +382,18 @@ export function RateCardPage() {
               <div><strong>{PRICE}</strong><span>THB</span></div>
               <Laurel flip />
             </div>
+            <div className="price-accounts">
+              <p>Published on:</p>
+              <div>
+                {channels.map(([image, handle, followers, href]) => (
+                  <a key={handle} href={href} target="_blank" rel="noreferrer" onClick={(e) => openExternal(e, href)}>
+                    <img src={image} alt="" />
+                    <span>{handle}</span>
+                    <b>{followers}</b>
+                  </a>
+                ))}
+              </div>
+            </div>
             <p className="price-note">Everything included:</p>
             <ul className="icon-list">
               {included.map(([ItemIcon, label]) => (
@@ -395,7 +407,6 @@ export function RateCardPage() {
         <section id="included" className="content-section">
           <SectionHead number="02" title="Already in the price." copy="Nothing is invoiced later." />
           <div className="receipt">
-            <div className="receipt-head"><span>Rate card 2026</span><span>{PRICE} THB</span></div>
             <ul>
               {scope.map(([ScopeIcon, title, copy]) => (
                 <li key={title}>
@@ -405,7 +416,6 @@ export function RateCardPage() {
                 </li>
               ))}
             </ul>
-            <div className="receipt-foot"><span>Extra costs</span><strong>0 THB</strong></div>
           </div>
         </section>
 
