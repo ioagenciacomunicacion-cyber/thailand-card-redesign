@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import {
   Activity,
+  ArrowDown,
   AtSign,
   BadgeDollarSign,
   BarChart3,
@@ -11,10 +12,11 @@ import {
   CalendarClock,
   Camera,
   Check,
-  ChevronDown,
   Clapperboard,
   Copy,
   Eye,
+  Facebook,
+
   FileCheck2,
   FileText,
   Heart,
@@ -46,11 +48,16 @@ import {
 } from "lucide-react";
 
 import { rateAssets } from "@/assets/rate-card";
+import { LineIcon, WhatsAppIcon } from "@/components/brand-icons";
 
 type Icon = ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
 
 const PRICE = "58,000";
 const EMAIL = "collab@vanessameraki.com";
+const PHONE = "+34 653 964 281";
+const WHATSAPP = "https://wa.me/34653964281";
+const LINE_ID = "@vanessameraki";
+const LINE = "https://line.me/ti/p/~vanessameraki";
 
 const channels = [
   [rateAssets.avatar_vanessa_jpg, "@vanessameraki", "178K", "https://instagram.com/vanessameraki"],
@@ -145,11 +152,12 @@ const navigation: [string, string, Icon][] = [
   ["contact", "Contact", MessageCircle],
 ];
 
-function SectionHead({ number, title, copy }: { number: string; title: string; copy?: string }) {
+function SectionHead({ number, title, phrase, copy }: { number: string; title: string; phrase?: string; copy?: string }) {
   return (
     <header className="section-head">
       <span className="section-index">{number}</span>
       <h2>{title}</h2>
+      {phrase ? <p className="section-phrase">{phrase}</p> : null}
       {copy ? <p className="section-copy">{copy}</p> : null}
     </header>
   );
@@ -182,28 +190,41 @@ export function RateCardPage() {
   const [activeSection, setActiveSection] = useState("offer");
   const [copied, setCopied] = useState(false);
   const dialogClose = useRef<HTMLButtonElement>(null);
+  const activeInsightItem = activeInsight === null ? undefined : insightScreens[activeInsight];
 
-  // Bar appears as soon as the reader scrolls or taps the arrow
+  // The bar only shows once the intro is behind you, and the active item is
+  // the last section that has passed under the bar — no guessing, no jumps.
   useEffect(() => {
-    const onScroll = () => setShowNavigation(window.scrollY > 40);
+    const ids = navigation.map(([id]) => id);
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const bar = document.querySelector<HTMLElement>(".section-nav");
+      const edge = (bar?.offsetHeight ?? 0) + 24;
+
+      setShowNavigation(y > window.innerHeight * 0.6 && activeInsight === null);
+
+      let current = ids[0] ?? "offer";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= edge) current = id;
+      }
+      // The last block cannot reach the top of the screen: light it at the end.
+      if (window.innerHeight + y >= document.documentElement.scrollHeight - 24) {
+        current = ids[ids.length - 1] ?? current;
+      }
+      setActiveSection(current);
+    };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    const sections = navigation
-      .map(([id]) => document.getElementById(id))
-      .filter((section): section is HTMLElement => Boolean(section));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActiveSection(visible.target.id);
-      },
-      { rootMargin: "-25% 0px -60%", threshold: [0, 0.2, 0.6] },
-    );
-    sections.forEach((s) => observer.observe(s));
+    window.addEventListener("resize", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
+      window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [activeInsight]);
+
 
   // Lightbox: close with Escape, lock page scroll while open
   useEffect(() => {
@@ -237,44 +258,35 @@ export function RateCardPage() {
     <main className="rate-page">
       {/* ---------- COVER ---------- */}
       <section className="rate-hero" aria-label="Thailand Privilege Card rate card">
-        <div className="hero-visual">
-          <img src={rateAssets.hero_jpg} alt="Vanessa Meraki at Wat Arun, Bangkok" className="hero-photo" fetchPriority="high" />
-          <div className="hero-head">
-            <p className="hero-eyebrow">Rate card</p>
-            <img src={rateAssets.vanessa_logo_dark_png} alt="Vanessa Meraki" className="hero-logo" />
-            <p className="hero-label">Prepared for</p>
-            <p className="hero-client-name">Amplify</p>
-            <p className="hero-label">Project for</p>
-            <img src={rateAssets.thailand_privilege_logo_red_png} alt="Thailand Privilege" className="hero-client" />
-          </div>
+        <img src={rateAssets.home_hero_png} alt="Vanessa Meraki at Wat Arun, Bangkok" className="hero-photo" fetchPriority="high" />
+        <div className="hero-branding">
+          <span>Rate card</span>
+          <img src={rateAssets.home_logo_png} alt="Vanessa Meraki" className="hero-logo" />
         </div>
-
-        <div className="hero-reach-card">
-          <div className="hero-accounts">
-            {channels.map(([image, handle, followers]) => (
-              <div key={handle}>
-                <img src={image} alt="" />
-                <span className="acc-handle">{handle}</span>
-                <strong>{followers}</strong>
-                <span className="acc-label">followers</span>
-              </div>
-            ))}
-          </div>
-          <div className="hero-total">
-            <strong>1.8M</strong>
-            <span>combined followers · 50M+ views a month</span>
-          </div>
+        <div className="hero-partnership">
+          <p><span>Prepared for</span><strong>Amplify</strong></p>
+          <div aria-hidden="true" />
+          <p><span>Project for</span><img src={rateAssets.thailand_privilege_logo_png} alt="Thailand Privilege" className="hero-client" /></p>
         </div>
-
-        <div className="hero-claim">
-          <h1>The largest Instagram audience<br />in the world</h1>
-          <p>Following Thailand travel content</p>
+        <div className="hero-bottom">
+          <div className="hero-reach">
+            <div className="hero-accounts">
+              {channels.map(([image, handle, followers]) => (
+                <div key={handle}>
+                  <img src={image} alt="" />
+                  <span>{handle}</span>
+                  <strong>{followers}</strong>
+                </div>
+              ))}
+            </div>
+            <p><strong>1.8M</strong><span>combined followers · 50M+ views a month</span></p>
+          </div>
+          <p className="hero-claim">The world's #1 Thailand travel account</p>
+          <a href="#offer" className="hero-scroll" onClick={() => setShowNavigation(true)}>
+            <span className="hero-scroll-ring"><ArrowDown aria-hidden /></span>
+            <span>See the rate</span>
+          </a>
         </div>
-
-        <a href="#offer" className="hero-scroll" onClick={() => setShowNavigation(true)}>
-          <span className="hero-scroll-ring"><ChevronDown aria-hidden /></span>
-          <span>See the rate</span>
-        </a>
       </section>
 
       {/* ---------- STICKY BAR: 6 items, no side scroll ---------- */}
@@ -292,10 +304,12 @@ export function RateCardPage() {
       <div className="rate-content">
         {/* ---------- 01 PRICE ---------- */}
         <section id="offer" className="content-section">
-          <SectionHead number="01" title="One video. Two platforms." />
+          <SectionHead number="01" title="One video. Three platforms." phrase="Four accounts. One price." copy="Your video goes live on all 4 accounts." />
           <div className="platform-chips">
             <span><Camera aria-hidden />Instagram Reels</span>
             <span><Smartphone aria-hidden />TikTok</span>
+            <span><Facebook aria-hidden />Facebook Reels</span>
+
           </div>
           <div className="price-card">
             <div className="price-stage">
@@ -316,8 +330,8 @@ export function RateCardPage() {
         <section id="channels" className="content-section reach-section">
           <SectionHead number="02" title="Four accounts. One price." copy="The biggest Instagram audience for Thailand travel." />
           <div className="reach-totals">
-            <div><Users aria-hidden /><strong>1.8M</strong><span>Followers</span></div>
-            <div><Eye aria-hidden /><strong>50M+</strong><span>Views a month</span></div>
+            <div><Laurel /><Users aria-hidden /><strong>1.8M</strong><span>Followers</span><Laurel flip /></div>
+            <div><Laurel /><Eye aria-hidden /><strong>50M+</strong><span>Views a month</span><Laurel flip /></div>
           </div>
           <div className="channel-list">
             {channels.map(([image, handle, followers, href]) => (
@@ -424,18 +438,24 @@ export function RateCardPage() {
           <h2>Let's create something amazing.</h2>
           <p className="footer-mail">{EMAIL}</p>
           <div className="footer-contact">
+            <a className="footer-ghost" href={WHATSAPP} target="_blank" rel="noreferrer"><WhatsAppIcon />WhatsApp</a>
+            <a className="footer-ghost" href={LINE} target="_blank" rel="noreferrer"><LineIcon />LINE</a>
             <a href={`mailto:${EMAIL}?subject=Thailand%20Privilege%20Card%20x%20Vanessa%20Meraki`}><Mail aria-hidden />Email us</a>
             <button type="button" onClick={copyEmail}>{copied ? <Check aria-hidden /> : <Copy aria-hidden />}{copied ? "Copied" : "Copy email"}</button>
           </div>
+          <p className="footer-handles">{PHONE} · {LINE_ID}</p>
           <p className="footer-small">Vanessa & Antonio · Bangkok, Thailand<br />Rates valid for the 2026 campaign season.</p>
         </footer>
       </div>
 
       {/* ---------- LIGHTBOX ---------- */}
-      {activeInsight !== null ? (
-        <div className="lightbox" role="dialog" aria-modal="true" aria-label={insightScreens[activeInsight][1]} onClick={(e) => e.target === e.currentTarget && setActiveInsight(null)}>
+      {activeInsightItem ? (
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label={activeInsightItem[1]} onClick={(e) => e.target === e.currentTarget && setActiveInsight(null)}>
           <button ref={dialogClose} type="button" className="lightbox-close" onClick={() => setActiveInsight(null)} aria-label="Close"><X aria-hidden /></button>
-          <img src={insightScreens[activeInsight][0]} alt={insightScreens[activeInsight][1]} />
+          <figure>
+            <img src={activeInsightItem[0]} alt={activeInsightItem[1]} />
+            <figcaption>{activeInsightItem[1]}</figcaption>
+          </figure>
         </div>
       ) : null}
     </main>
