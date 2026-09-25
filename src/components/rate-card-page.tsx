@@ -479,13 +479,13 @@ export function RateCardPage() {
               <summary><AtSign aria-hidden /><span>Usage</span><em>30 days</em><ChevronDown className="chev" aria-hidden /></summary>
               <p>Brand tagged in the first line of the caption.<br />Video used as delivered. 30-day Spark Ads code included.</p>
             </details>
-            <details>
-              <summary><Plus aria-hidden /><span>Extras</span><em>On request</em><ChevronDown className="chev" aria-hidden /></summary>
-              <div className="extra-chips">
-                {onRequest.map(([ReqIcon, label]) => <span key={label}><ReqIcon aria-hidden />{label}</span>)}
-              </div>
-            </details>
           </div>
+          <h3 className="sub-title">Price on request</h3>
+          <ul className="request-list">
+            {onRequest.map(([ReqIcon, label]) => (
+              <li key={label}><i className="ico"><ReqIcon aria-hidden /></i><span>{label}</span><em>On request</em></li>
+            ))}
+          </ul>
         </section>
 
         {/* ---------- 07 ABOUT ---------- */}
