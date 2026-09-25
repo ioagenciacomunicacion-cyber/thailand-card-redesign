@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import {
   Activity,
-  ArrowDown,
   AtSign,
   BadgeDollarSign,
   BarChart3,
@@ -12,11 +11,11 @@ import {
   CalendarClock,
   Camera,
   Check,
+  ChevronDown,
   Clapperboard,
   Copy,
   Eye,
   Facebook,
-
   FileCheck2,
   FileText,
   Heart,
@@ -48,7 +47,6 @@ import {
 } from "lucide-react";
 
 import { rateAssets } from "@/assets/rate-card";
-import { LineIcon, WhatsAppIcon } from "@/components/brand-icons";
 
 type Icon = ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
 
@@ -152,6 +150,22 @@ const navigation: [string, string, Icon][] = [
   ["contact", "Contact", MessageCircle],
 ];
 
+function WhatsAppIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+      <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.2-.2-.5-.3z" />
+    </svg>
+  );
+}
+
+function LineIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+      <path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s6-3.5 8.2-6A7.4 7.4 0 0 0 22 11c0-4.4-4.5-8-10-8zM8.4 13.4H6.5a.5.5 0 0 1-.5-.5V9a.5.5 0 0 1 1 0v3.4h1.4a.5.5 0 0 1 0 1zm1.9-.5a.5.5 0 0 1-1 0V9a.5.5 0 0 1 1 0zm4.7 0a.5.5 0 0 1-.9.3l-2-2.7v2.4a.5.5 0 0 1-1 0V9a.5.5 0 0 1 .9-.3l2 2.7V9a.5.5 0 0 1 1 0zm3.1-2.4a.5.5 0 0 1 0 1h-1.4v.9h1.4a.5.5 0 0 1 0 1h-1.9a.5.5 0 0 1-.5-.5V9a.5.5 0 0 1 .5-.5h1.9a.5.5 0 0 1 0 1h-1.4v.9z" />
+    </svg>
+  );
+}
+
 function SectionHead({ number, title, phrase, copy }: { number: string; title: string; phrase?: string; copy?: string }) {
   return (
     <header className="section-head">
@@ -202,7 +216,7 @@ export function RateCardPage() {
       const bar = document.querySelector<HTMLElement>(".section-nav");
       const edge = (bar?.offsetHeight ?? 0) + 24;
 
-      setShowNavigation(y > window.innerHeight * 0.6 && activeInsight === null);
+      setShowNavigation(y > 40 && activeInsight === null);
 
       let current = ids[0] ?? "offer";
       for (const id of ids) {
@@ -258,35 +272,44 @@ export function RateCardPage() {
     <main className="rate-page">
       {/* ---------- COVER ---------- */}
       <section className="rate-hero" aria-label="Thailand Privilege Card rate card">
-        <img src={rateAssets.home_hero_png} alt="Vanessa Meraki at Wat Arun, Bangkok" className="hero-photo" fetchPriority="high" />
-        <div className="hero-branding">
-          <span>Rate card</span>
-          <img src={rateAssets.home_logo_png} alt="Vanessa Meraki" className="hero-logo" />
-        </div>
-        <div className="hero-partnership">
-          <p><span>Prepared for</span><strong>Amplify</strong></p>
-          <div aria-hidden="true" />
-          <p><span>Project for</span><img src={rateAssets.thailand_privilege_logo_png} alt="Thailand Privilege" className="hero-client" /></p>
-        </div>
-        <div className="hero-bottom">
-          <div className="hero-reach">
-            <div className="hero-accounts">
-              {channels.map(([image, handle, followers]) => (
-                <div key={handle}>
-                  <img src={image} alt="" />
-                  <span>{handle}</span>
-                  <strong>{followers}</strong>
-                </div>
-              ))}
-            </div>
-            <p><strong>1.8M</strong><span>combined followers · 50M+ views a month</span></p>
+        <div className="hero-visual">
+          <img src={rateAssets.hero_jpg} alt="Vanessa Meraki at Wat Arun, Bangkok" className="hero-photo" fetchPriority="high" />
+          <div className="hero-head">
+            <p className="hero-eyebrow">Rate card</p>
+            <img src={rateAssets.vanessa_logo_dark_png} alt="Vanessa Meraki" className="hero-logo" />
+            <p className="hero-label">Prepared for</p>
+            <p className="hero-client-name">Amplify</p>
+            <p className="hero-label">Project for</p>
+            <img src={rateAssets.thailand_privilege_logo_red_png} alt="Thailand Privilege" className="hero-client" />
           </div>
-          <p className="hero-claim">The world's #1 Thailand travel account</p>
-          <a href="#offer" className="hero-scroll" onClick={() => setShowNavigation(true)}>
-            <span className="hero-scroll-ring"><ArrowDown aria-hidden /></span>
-            <span>See the rate</span>
-          </a>
         </div>
+
+        <div className="hero-reach-card">
+          <div className="hero-accounts">
+            {channels.map(([image, handle, followers]) => (
+              <div key={handle}>
+                <img src={image} alt="" />
+                <span className="acc-handle">{handle}</span>
+                <strong>{followers}</strong>
+                <span className="acc-label">followers</span>
+              </div>
+            ))}
+          </div>
+          <div className="hero-total">
+            <strong>1.8M</strong>
+            <span>combined followers · 50M+ views a month</span>
+          </div>
+        </div>
+
+        <div className="hero-claim">
+          <h1>The largest Instagram audience<br />in the world</h1>
+          <p>Following Thailand travel content</p>
+        </div>
+
+        <a href="#offer" className="hero-scroll" onClick={() => setShowNavigation(true)}>
+          <span className="hero-scroll-ring"><ChevronDown aria-hidden /></span>
+          <span>See the rate</span>
+        </a>
       </section>
 
       {/* ---------- STICKY BAR: 6 items, no side scroll ---------- */}
@@ -304,11 +327,11 @@ export function RateCardPage() {
       <div className="rate-content">
         {/* ---------- 01 PRICE ---------- */}
         <section id="offer" className="content-section">
-          <SectionHead number="01" title="One video. Three platforms." phrase="Four accounts. One price." copy="Your video goes live on all 4 accounts." />
+          <SectionHead number="01" title="One video. Three platforms." copy="Live on all 4 accounts." />
           <div className="platform-chips">
-            <span><Camera aria-hidden />Instagram Reels</span>
+            <span><Camera aria-hidden />Instagram</span>
             <span><Smartphone aria-hidden />TikTok</span>
-            <span><Facebook aria-hidden />Facebook Reels</span>
+            <span><Facebook aria-hidden />Facebook</span>
 
           </div>
           <div className="price-card">

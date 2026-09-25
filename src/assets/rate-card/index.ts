@@ -1,3 +1,7 @@
+import vanessaLogoDark from "./vanessa-logo-dark.png";
+import heroSunset from "./hero-sunset.jpg";
+import thailandPrivilegeLogoRed from "./thailand-privilege-logo-red.png";
+
 export const rateAssets = {
   avatar_antonio_jpg: '/__l5e/assets-v1/f9b814ff-e684-43a6-8272-3ab9acf096f1/avatar-antonio.jpg',
   avatar_bangkok_jpg: '/__l5e/assets-v1/a729f557-ecc8-41d1-a938-ed5f4a55eac1/avatar-bangkok.jpg',
@@ -36,4 +40,7 @@ export const rateAssets = {
   insight_08_top_location_cities_jpg: '/__l5e/assets-v1/b8bba281-288b-42b5-ae14-501801f13411/insight-08-top-location-cities.jpg',
   thailand_privilege_logo_png: '/__l5e/assets-v1/a3897918-6530-41bf-b520-6e0b6f1372b1/thailand-privilege-logo.png',
   vanessa_logo_png: '/__l5e/assets-v1/8ca7b7f5-338b-4dd6-897d-42beba0b9b0a/vanessa-logo.png',
+  vanessa_logo_dark_png: vanessaLogoDark,
+  hero_sunset_jpg: heroSunset,
+  thailand_privilege_logo_red_png: thailandPrivilegeLogoRed,
 } as const;
