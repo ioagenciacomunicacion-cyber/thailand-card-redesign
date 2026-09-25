@@ -1,67 +1,80 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
 import {
+  Activity,
   ArrowDown,
-  ArrowRight,
+  AtSign,
   BadgeDollarSign,
   BarChart3,
+  Bookmark,
+  CalendarCheck,
+  CalendarClock,
+  Camera,
   Check,
-  ChevronRight,
+  Clapperboard,
+  Copy,
+  Eye,
   FileCheck2,
-  Instagram,
+  FileText,
+  Heart,
+  House,
+  Landmark,
+  Languages,
+  Layers,
+  Lightbulb,
   ListChecks,
   Mail,
+  MapPin,
   Maximize2,
   MessageCircle,
+  Mic,
+  Plus,
   Radio,
+  Rocket,
+  RotateCcw,
+  Send,
+  Share2,
+  Smartphone,
   Sparkles,
+  ThumbsUp,
+  UserPlus,
+  Users,
+  Wallet,
+  X,
+  Zap,
 } from "lucide-react";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { rateAssets } from "@/assets/rate-card";
 
-const platforms = [
-  {
-    id: "reels",
-    label: "Reels",
-    eyebrow: "Instagram Reels",
-    title: "A cinematic, real-life story",
-    copy: "One vertical video about premium, convenient long-term life in Thailand, published to the full network.",
-    facts: ["English voiceover", "Colour grading + subtitles", "30-day paid usage on Instagram"],
-  },
-  {
-    id: "tiktok",
-    label: "TikTok",
-    eyebrow: "TikTok",
-    title: "Native reach, same production",
-    copy: "The same campaign story is cross-posted for TikTok and includes a 30-day Spark Ads code.",
-    facts: ["Vertical native edit", "Spark Ads code included", "Metrics remain public"],
-  },
-  {
-    id: "stories",
-    label: "Stories",
-    eyebrow: "Instagram Stories",
-    title: "The campaign, continued",
-    copy: "A pack of Stories supports the main video and gives the audience a direct route into the campaign.",
-    facts: ["Published alongside the video", "Designed in the same visual language", "Additional packs on request"],
-  },
-];
+type Icon = ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
+
+const PRICE = "58,000";
+const EMAIL = "collab@vanessameraki.com";
 
 const channels = [
   [rateAssets.avatar_vanessa_jpg, "@vanessameraki", "178K", "https://instagram.com/vanessameraki"],
   [rateAssets.avatar_thailand_jpg, "@thailand.explores", "970K", "https://instagram.com/thailand.explores"],
   [rateAssets.avatar_bangkok_jpg, "@bangkok.explore", "670K", "https://instagram.com/bangkok.explore"],
   [rateAssets.avatar_antonio_jpg, "@antonioxederax", "20K", "https://instagram.com/antonioxederax"],
+] as const;
+
+const included: [Icon, string][] = [
+  [Lightbulb, "Concept & script"],
+  [Mic, "English voiceover"],
+  [Clapperboard, "Shooting & editing"],
+  [Smartphone, "Instagram Stories"],
+  [Rocket, "30-day Spark Ads"],
+  [Users, "Published on 4 accounts"],
 ];
 
-const metrics = [
-  ["4.7M", "Views"], ["265.9K", "Interactions"], ["1.1K", "New followers"],
-  ["139K", "Likes"], ["54.9K", "Shares"], ["9.2K", "Saves"],
+const metrics: [Icon, string, string][] = [
+  [Eye, "4.7M", "Views"],
+  [Activity, "265.9K", "Interactions"],
+  [UserPlus, "1.1K", "New followers"],
+  [Heart, "139K", "Likes"],
+  [Share2, "54.9K", "Shares"],
+  [Bookmark, "9.2K", "Saves"],
 ];
 
 const insightScreens = [
@@ -69,36 +82,43 @@ const insightScreens = [
   [rateAssets.insight_02_interactions_jpg, "Interactions"],
   [rateAssets.insight_03_top_countries_jpg, "Top countries"],
   [rateAssets.insight_04_top_cities_jpg, "Top cities"],
-  [rateAssets.insight_05_top_age_ranges_jpg, "Top age ranges"],
+  [rateAssets.insight_05_top_age_ranges_jpg, "Age ranges"],
   [rateAssets.insight_06_gender_jpg, "Gender"],
-  [rateAssets.insight_07_top_location_countries_jpg, "Top location · countries"],
-  [rateAssets.insight_08_top_location_cities_jpg, "Top location · cities"],
+  [rateAssets.insight_07_top_location_countries_jpg, "Location · countries"],
+  [rateAssets.insight_08_top_location_cities_jpg, "Location · cities"],
+] as const;
+
+const scope: [Icon, string, string][] = [
+  [Lightbulb, "Concept", "Based on your brief. You approve it first."],
+  [MapPin, "Location", "Real places in Thailand."],
+  [Clapperboard, "Editing", "Music, colour and English subtitles."],
+  [Sparkles, "Styling", "Hair and makeup included."],
+  [House, "Travel", "We live in Bangkok. No travel costs."],
+  [RotateCcw, "Revisions", "1 on the script, 2 small ones on the video."],
+  [ThumbsUp, "Metrics", "Views and likes stay public."],
 ];
 
-const scope = [
-  ["Concept and storyline", "Premium, exclusive and convenient, as per your brief. Sent for approval before the shoot."],
-  ["Shooting on location", "Real settings that show long-term living in Thailand."],
-  ["Editing and subtitles", "Music, colour grading and English subtitles."],
-  ["Hair, makeup and styling", "We arrive camera-ready."],
-  ["No flights or accommodation", "We live in Bangkok. Nothing to charge here."],
-  ["Revisions", "1 round on the script, up to 2 minor changes on the draft."],
-  ["Metrics stay public", "Views and engagement remain visible on the post."],
+const timeline: [Icon, string, string][] = [
+  [FileText, "Script", "3 working days after the brief."],
+  [Check, "Your approval", "One round of feedback."],
+  [Camera, "Shoot", "In Bangkok, on a date we agree."],
+  [Clapperboard, "Draft", "7 days after the shoot."],
+  [RotateCcw, "Changes", "Up to 2, back in 2 working days."],
+  [Send, "Publication", "On all 4 accounts."],
 ];
 
-const timeline = [
-  ["Concept and script", "Within 3 working days of receiving the final brief."],
-  ["Your approval", "One round of feedback before we shoot."],
-  ["Shoot", "On location in Bangkok, on a date we agree."],
-  ["Draft delivered", "Within 7 days of the shoot."],
-  ["Revisions", "Up to 2 minor changes, returned within 2 working days."],
-  ["Publication", "On the agreed date, across all four accounts."],
+const terms: [Icon, string, string][] = [
+  [Landmark, "Transfer", "Thai bank transfer. Prices without taxes."],
+  [FileText, "Invoice", "From our Thai company."],
+  [AtSign, "Tag", "Brand tagged in the first line."],
+  [Clapperboard, "Video", "Used as delivered."],
 ];
 
-const legal = [
-  ["Payment", "50% before production starts. 50% on delivery of the draft. Local Thai bank transfer to our Thai company. Rates quoted excluding taxes."],
-  ["Invoicing", "Based in Bangkok and operating through our own Thai company. Invoicing and payment are handled locally, with all company documents supplied."],
-  ["Usage", "Organic posting on all four accounts, 30-day Spark Ads code for TikTok and the same paid usage on Instagram. Brand tagged in the first caption line."],
-  ["Price on request", "Usage beyond 30 days, urgent draft under 72 hours, additional Story packs and extra platforms."],
+const onRequest: [Icon, string][] = [
+  [Layers, "More Stories"],
+  [Zap, "Urgent draft (72h)"],
+  [CalendarClock, "Usage after 30 days"],
+  [Plus, "Extra platforms"],
 ];
 
 const brandLogos = [
@@ -114,29 +134,21 @@ const brandLogos = [
   [rateAssets.brand_10_centralworld_png, "centralwOrld"],
   [rateAssets.brand_11_royal_jordanian_png, "Royal Jordanian"],
   [rateAssets.brand_12_alain_ducasse_paris_png, "Alain Ducasse Paris"],
-];
-
-const extras = [
-  "Additional Stories pack",
-  "Urgent draft · under 72h",
-  "Usage beyond 30 days",
-  "Extra platforms",
-];
-
-const navigation = [
-  ["offer", "Oferta", BadgeDollarSign],
-  ["channels", "Canales", Radio],
-  ["metrics", "Métricas", BarChart3],
-  ["terms", "Términos", FileCheck2],
-  ["timeline", "Timeline", ListChecks],
-  ["contact", "Contacto", MessageCircle],
 ] as const;
 
-function SectionHead({ number, eyebrow, title, copy }: { number: string; eyebrow: string; title: string; copy?: string }) {
+const navigation: [string, string, Icon][] = [
+  ["offer", "Price", BadgeDollarSign],
+  ["channels", "Reach", Radio],
+  ["metrics", "Stats", BarChart3],
+  ["timeline", "Steps", ListChecks],
+  ["terms", "Terms", FileCheck2],
+  ["contact", "Contact", MessageCircle],
+];
+
+function SectionHead({ number, title, copy }: { number: string; title: string; copy?: string }) {
   return (
     <header className="section-head">
-      <div className="section-index"><span>{number}</span><i /></div>
-      <p className="eyebrow">{eyebrow}</p>
+      <span className="section-index">{number}</span>
       <h2>{title}</h2>
       {copy ? <p className="section-copy">{copy}</p> : null}
     </header>
@@ -144,194 +156,269 @@ function SectionHead({ number, eyebrow, title, copy }: { number: string; eyebrow
 }
 
 function Laurel({ flip = false }: { flip?: boolean }) {
+  const leaves = Array.from({ length: 10 }).map((_, k) => {
+    const t = k / 9;
+    const x = (1 - t) ** 2 * 31 + 2 * (1 - t) * t * 10 + t * t * 26;
+    const y = (1 - t) ** 2 * 90 + 2 * (1 - t) * t * 56 + t * t * 8;
+    const s = 1 - 0.35 * t;
+    return (
+      <g key={k}>
+        <ellipse cx={x - 5.5} cy={y - 1} rx={2.9 * s} ry={7.4 * s} transform={`rotate(-42 ${x - 5.5} ${y - 1})`} />
+        <ellipse cx={x + 5} cy={y - 4} rx={2.7 * s} ry={6.8 * s} transform={`rotate(34 ${x + 5} ${y - 4})`} />
+      </g>
+    );
+  });
   return (
     <svg className={flip ? "laurel laurel-flip" : "laurel"} viewBox="0 0 44 96" aria-hidden="true">
       <path d="M31 92 Q10 56 26 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      {Array.from({ length: 10 }).map((_, index) => {
-        const y = 88 - index * 8;
-        const x = index < 5 ? 24 - index * 2 : 14 + (index - 5);
-        return <ellipse key={y} cx={x} cy={y} rx="2.6" ry="6.5" transform={`rotate(-42 ${x} ${y})`} fill="currentColor" />;
-      })}
+      <g fill="currentColor">{leaves}</g>
     </svg>
   );
 }
 
 export function RateCardPage() {
-  const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [activeInsight, setActiveInsight] = useState<number | null>(null);
   const [showNavigation, setShowNavigation] = useState(false);
   const [activeSection, setActiveSection] = useState("offer");
-  const heroRef = useRef<HTMLElement>(null);
-  const navRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
+  const dialogClose = useRef<HTMLButtonElement>(null);
 
-  const toggleExtra = (extra: string) => {
-    setSelectedExtras((current) => current.includes(extra) ? current.filter((item) => item !== extra) : [...current, extra]);
-  };
-
+  // Bar appears as soon as the reader scrolls or taps the arrow
   useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-    const heroObserver = new IntersectionObserver(([entry]) => setShowNavigation(!entry?.isIntersecting), { threshold: 0.08 });
-    heroObserver.observe(hero);
-    const sections = navigation.map(([id]) => document.getElementById(id)).filter((section): section is HTMLElement => Boolean(section));
-    const sectionObserver = new IntersectionObserver((entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible?.target.id) setActiveSection(visible.target.id);
-    }, { rootMargin: "-22% 0px -62%", threshold: [0, 0.2, 0.6] });
-    sections.forEach((section) => sectionObserver.observe(section));
-    return () => { heroObserver.disconnect(); sectionObserver.disconnect(); };
+    const onScroll = () => setShowNavigation(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const sections = navigation
+      .map(([id]) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-25% 0px -60%", threshold: [0, 0.2, 0.6] },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
   }, []);
 
+  // Lightbox: close with Escape, lock page scroll while open
   useEffect(() => {
-    const activeLink = navRef.current?.querySelector<HTMLAnchorElement>(`a[href="#${activeSection}"]`);
-    activeLink?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-  }, [activeSection]);
+    if (activeInsight === null) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActiveInsight(null);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    dialogClose.current?.focus();
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [activeInsight]);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch {
+      const a = document.createElement("textarea");
+      a.value = EMAIL;
+      document.body.appendChild(a);
+      a.select();
+      document.execCommand("copy");
+      a.remove();
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <main className="rate-page">
-      <section ref={heroRef} className="rate-hero" aria-label="Thailand Privilege Card rate card">
-        <img src={rateAssets.hero_jpg} alt="Vanessa Meraki on a terrace at Wat Arun in Bangkok" className="hero-photo" fetchPriority="high" />
-        <div className="hero-branding" aria-label="Vanessa Meraki rate card">
+      {/* ---------- COVER ---------- */}
+      <section className="rate-hero" aria-label="Thailand Privilege Card rate card">
+        <img src={rateAssets.hero_jpg} alt="Vanessa Meraki at Wat Arun, Bangkok" className="hero-photo" fetchPriority="high" />
+        <div className="hero-branding">
           <img src={rateAssets.vanessa_logo_png} alt="Vanessa Meraki" className="hero-logo" />
-          <span>Rate card · 2026</span>
+          <span>Rate card 2026</span>
         </div>
         <div className="hero-bottom">
-          <p className="eyebrow hero-kicker">Prepared for Amplify</p>
-          <div className="hero-project">
-            <span>Project for</span>
-            <img src={rateAssets.thailand_privilege_logo_png} alt="Thailand Privilege" />
-          </div>
+          <p className="hero-kicker">Prepared for Amplify</p>
+          <img src={rateAssets.thailand_privilege_logo_png} alt="Thailand Privilege" className="hero-client" />
           <div className="hero-reach">
             <div className="avatar-stack">
               {channels.map(([image, handle]) => <img key={handle} src={image} alt="" />)}
             </div>
-            <p><strong>1.8M</strong><span>followers across 4 accounts</span></p>
+            <p><strong>1.8M</strong><span>followers on 4 accounts</span></p>
           </div>
-          <a href="#offer" className="hero-scroll" aria-label="See the rate"><ArrowDown /></a>
+          <a href="#offer" className="hero-scroll" onClick={() => setShowNavigation(true)}>
+            <span className="hero-scroll-ring"><ArrowDown aria-hidden /></span>
+            <span>See the rate</span>
+          </a>
         </div>
       </section>
 
-      <nav className={showNavigation ? "section-nav is-visible" : "section-nav"} aria-label="Rate card sections">
-        <div ref={navRef} className="section-nav-track">
-          {navigation.map(([id, label, Icon]) => (
+      {/* ---------- STICKY BAR: 6 items, no side scroll ---------- */}
+      <nav className={showNavigation ? "section-nav is-visible" : "section-nav"} aria-label="Sections">
+        <div className="section-nav-track">
+          {navigation.map(([id, label, NavIcon]) => (
             <a key={id} href={`#${id}`} className={activeSection === id ? "is-active" : ""} aria-current={activeSection === id ? "location" : undefined}>
-              <Icon aria-hidden="true" /><span>{label}</span>
+              <NavIcon aria-hidden />
+              <span>{label}</span>
             </a>
           ))}
         </div>
       </nav>
 
       <div className="rate-content">
-        <section id="offer" className="content-section offer-section">
-          <SectionHead number="01" eyebrow="Content rate" title="One video. Both platforms." copy="A complete production, designed for premium long-term living in Thailand." />
-          <div className="price-stage">
-            <Laurel />
-            <div><strong>66,000</strong><span>THB</span></div>
-            <Laurel flip />
+        {/* ---------- 01 PRICE ---------- */}
+        <section id="offer" className="content-section">
+          <SectionHead number="01" title="One video. Two platforms." />
+          <div className="platform-chips">
+            <span><Camera aria-hidden />Instagram Reels</span>
+            <span><Smartphone aria-hidden />TikTok</span>
           </div>
-          <p className="price-note">Concept, script, voiceover, shooting, editing, Instagram Stories and 30-day paid usage are already included.</p>
-
-          <Tabs defaultValue="reels" className="platform-tabs">
-            <TabsList className="platform-list">
-              {platforms.map((platform) => <TabsTrigger key={platform.id} value={platform.id}>{platform.label}</TabsTrigger>)}
-            </TabsList>
-            {platforms.map((platform) => (
-              <TabsContent key={platform.id} value={platform.id} className="platform-panel">
-                <p className="eyebrow">{platform.eyebrow}</p>
-                <h3>{platform.title}</h3>
-                <p>{platform.copy}</p>
-                <ul>{platform.facts.map((fact) => <li key={fact}><Check />{fact}</li>)}</ul>
-              </TabsContent>
-            ))}
-          </Tabs>
+          <div className="price-card">
+            <div className="price-stage">
+              <Laurel />
+              <div><strong>{PRICE}</strong><span>THB</span></div>
+              <Laurel flip />
+            </div>
+            <p className="price-note">Everything included:</p>
+            <ul className="icon-list">
+              {included.map(([ItemIcon, label]) => (
+                <li key={label}><i className="ico"><ItemIcon aria-hidden /></i>{label}</li>
+              ))}
+            </ul>
+          </div>
         </section>
 
+        {/* ---------- 02 REACH ---------- */}
         <section id="channels" className="content-section reach-section">
-          <SectionHead number="02" eyebrow="Built-in reach" title="Four accounts. One price." copy="Your video goes live across the largest Instagram audience in the world following Thailand travel and lifestyle content." />
-          <div className="reach-totals"><div><strong>1.8M</strong><span>Combined followers</span></div><div><strong>50M+</strong><span>Views a month</span></div></div>
+          <SectionHead number="02" title="Four accounts. One price." copy="The biggest Instagram audience for Thailand travel." />
+          <div className="reach-totals">
+            <div><Users aria-hidden /><strong>1.8M</strong><span>Followers</span></div>
+            <div><Eye aria-hidden /><strong>50M+</strong><span>Views a month</span></div>
+          </div>
           <div className="channel-list">
             {channels.map(([image, handle, followers, href]) => (
               <a href={href} target="_blank" rel="noreferrer" key={handle}>
-                <img src={image} alt="" /><span><strong>{handle}</strong><small>Instagram</small></span><b>{followers}</b><ChevronRight />
+                <img src={image} alt="" />
+                <span>{handle}</span>
+                <b>{followers}</b>
               </a>
             ))}
           </div>
         </section>
 
-        <section id="metrics" className="content-section insight-section">
-          <SectionHead number="03" eyebrow="Audience demographics" title="Proof, not promises." copy="Straight from the @vanessameraki Instagram dashboard. Swipe through and tap any screen to enlarge." />
-          <div className="metric-grid">{metrics.map(([value, label]) => <div key={label}><strong>{value}</strong><span>{label}</span></div>)}</div>
-          <Carousel opts={{ align: "start", loop: true }} className="insight-carousel">
-            <CarouselContent>
-              {insightScreens.map(([image, label], index) => (
-                <CarouselItem key={label} className="basis-[54%] sm:basis-1/3">
-                  <Button variant="ghost" className="insight-card" onClick={() => setActiveInsight(index)} aria-label={`Enlarge ${label}`}>
-                    <img src={image} alt={label} loading="lazy" />
-                    <span>{label}<Maximize2 /></span>
-                  </Button>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="carousel-prev" />
-            <CarouselNext className="carousel-next" />
-          </Carousel>
-        </section>
-
-        <section className="content-section calculator-section">
-          <SectionHead number="04" eyebrow="Build your campaign" title="Start with the full package." copy="Select anything extra you may need. Unpriced additions remain on request and are never guessed." />
-          <div className="calculator-card">
-            <div className="calculator-base"><span>Base campaign</span><strong>66,000 THB</strong></div>
-            <div className="extra-list">
-              {extras.map((extra) => {
-                const selected = selectedExtras.includes(extra);
-                return <Button key={extra} variant="ghost" onClick={() => toggleExtra(extra)} className={selected ? "extra-row is-selected" : "extra-row"}><span className="extra-check">{selected ? <Check /> : null}</span><b>{extra}</b><em>On request</em></Button>;
-              })}
-            </div>
-            <div className="calculator-total"><span>Current base</span><strong>66,000 THB</strong><small>{selectedExtras.length ? `+ ${selectedExtras.length} item${selectedExtras.length > 1 ? "s" : ""} to quote` : "No extras selected"}</small></div>
-            <Button asChild size="lg" className="quote-button"><a href="mailto:collab@vanessameraki.com?subject=Thailand%20Privilege%20Card%20x%20Vanessa%20Meraki">Request this package <ArrowRight /></a></Button>
+        {/* ---------- 03 STATS ---------- */}
+        <section id="metrics" className="content-section">
+          <SectionHead number="03" title="Real numbers." copy="From the @vanessameraki dashboard. Tap to enlarge." />
+          <div className="metric-grid">
+            {metrics.map(([MetricIcon, value, label]) => (
+              <div key={label}>
+                <MetricIcon aria-hidden />
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="insight-grid">
+            {insightScreens.map(([image, label], index) => (
+              <button type="button" key={label} className="insight-card" onClick={() => setActiveInsight(index)} aria-label={`Enlarge ${label}`}>
+                <img src={image} alt={label} loading="lazy" />
+                <span>{label}<Maximize2 aria-hidden /></span>
+              </button>
+            ))}
           </div>
         </section>
 
-        <section id="terms" className="content-section scope-section">
-          <SectionHead number="05" eyebrow="Collaboration terms" title="Already in the price." />
-          <div className="scope-grid">{scope.map(([title, copy]) => <article key={title}><Check /><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div>
+        {/* ---------- 04 INCLUDED ---------- */}
+        <section id="included" className="content-section">
+          <SectionHead number="04" title="Already in the price." />
+          <div className="row-list">
+            {scope.map(([ScopeIcon, title, copy]) => (
+              <article key={title}>
+                <i className="ico"><ScopeIcon aria-hidden /></i>
+                <div><h3>{title}</h3><p>{copy}</p></div>
+              </article>
+            ))}
+          </div>
         </section>
 
-        <section id="timeline" className="content-section process-section">
-          <SectionHead number="06" eyebrow="Production & terms" title="Clear at every step." copy="From brief to publication, typically three weeks." />
-          <Tabs defaultValue="timeline" className="detail-tabs">
-            <TabsList className="detail-tabs-list"><TabsTrigger value="timeline">Timeline</TabsTrigger><TabsTrigger value="terms">Payment & usage</TabsTrigger></TabsList>
-            <TabsContent value="timeline"><Accordion type="single" collapsible defaultValue="step-1" className="editorial-accordion">{timeline.map(([title, copy], index) => <AccordionItem value={`step-${index + 1}`} key={title}><AccordionTrigger><span className="step-no">0{index + 1}</span><span>{title}</span></AccordionTrigger><AccordionContent>{copy}</AccordionContent></AccordionItem>)}</Accordion></TabsContent>
-            <TabsContent value="terms"><Accordion type="single" collapsible defaultValue="legal-0" className="editorial-accordion">{legal.map(([title, copy], index) => <AccordionItem value={`legal-${index}`} key={title}><AccordionTrigger><span>{title}</span></AccordionTrigger><AccordionContent>{copy}</AccordionContent></AccordionItem>)}</Accordion></TabsContent>
-          </Tabs>
+        {/* ---------- 05 STEPS ---------- */}
+        <section id="timeline" className="content-section soft-section">
+          <SectionHead number="05" title="How we work." copy="About 3 weeks." />
+          <ol className="steps">
+            {timeline.map(([StepIcon, title, copy], index) => (
+              <li key={title}>
+                <span className="step-no">{index + 1}</span>
+                <div>
+                  <h3><StepIcon aria-hidden />{title}</h3>
+                  <p>{copy}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        <section className="content-section about-section">
-          <SectionHead number="07" eyebrow="Who you are booking" title="Vanessa & Antonio" copy="A creator couple working together on every production — Vanessa on camera, Antonio on production and editing." />
-          <div className="about-copy"><p>Spanish and Italian, both living in Bangkok: <strong>the exact profile of a Thailand Privilege Card member.</strong> We work in English, Spanish and Italian.</p><p><b>Based in Bangkok.</b> Not visiting: we live here, on Sukhumvit. We know the city's locations. No flights or accommodation to charge you.</p><p><b>Our style.</b> Travel and lifestyle: elevated, cinematic, colour-rich. Long-term life in Thailand is already the heart of our content.</p></div>
-          <h3 className="brands-title">Brands we have worked with</h3>
-          <div className="brand-grid">{brandLogos.map(([image, label]) => <div key={label}><img src={image} alt={label} loading="lazy" /></div>)}</div>
+        {/* ---------- 06 TERMS ---------- */}
+        <section id="terms" className="content-section">
+          <SectionHead number="06" title="Payment & usage." />
+          <div className="pay-split">
+            <div><Wallet aria-hidden /><strong>50%</strong><span>To start</span></div>
+            <div><CalendarCheck aria-hidden /><strong>50%</strong><span>On delivery</span></div>
+          </div>
+          <div className="row-list">
+            {terms.map(([TermIcon, title, copy]) => (
+              <article key={title}>
+                <i className="ico"><TermIcon aria-hidden /></i>
+                <div><h3>{title}</h3><p>{copy}</p></div>
+              </article>
+            ))}
+          </div>
+          <h3 className="sub-title">Price on request</h3>
+          <ul className="request-list">
+            {onRequest.map(([ReqIcon, label]) => (
+              <li key={label}><i className="ico"><ReqIcon aria-hidden /></i><span>{label}</span><em>On request</em></li>
+            ))}
+          </ul>
         </section>
 
+        {/* ---------- 07 ABOUT ---------- */}
+        <section className="content-section">
+          <SectionHead number="07" title="Vanessa & Antonio" />
+          <div className="row-list">
+            <article><i className="ico"><Camera aria-hidden /></i><div><h3>A creator couple</h3><p>Vanessa on camera, Antonio behind it.</p></div></article>
+            <article><i className="ico"><MapPin aria-hidden /></i><div><h3>Living in Bangkok</h3><p>Spanish and Italian, based in Bangkok. The exact profile of a Thailand Privilege member.</p></div></article>
+            <article><i className="ico"><Languages aria-hidden /></i><div><h3>Three languages</h3><p>We speak English, Spanish and Italian.</p></div></article>
+          </div>
+          <h3 className="sub-title">Brands we've worked with</h3>
+          <div className="brand-grid">
+            {brandLogos.map(([image, label]) => <div key={label}><img src={image} alt={label} loading="lazy" /></div>)}
+          </div>
+        </section>
+
+        {/* ---------- CONTACT ---------- */}
         <footer id="contact" className="rate-footer">
-          <Sparkles /><h2>Let’s create something amazing.</h2>
-          <p>Vanessa & Antonio · Bangkok, Thailand<br />Rates valid for the 2026 campaign season.</p>
+          <Sparkles aria-hidden />
+          <h2>Let's create something amazing.</h2>
+          <p className="footer-mail">{EMAIL}</p>
           <div className="footer-contact">
-            <Button asChild><a href="mailto:collab@vanessameraki.com"><Mail />Email</a></Button>
-            <Button type="button" variant="outline" disabled aria-label="WhatsApp link pending"><MessageCircle />WhatsApp</Button>
-            <Button type="button" variant="outline" disabled aria-label="LINE link pending"><MessageCircle />LINE</Button>
+            <a href={`mailto:${EMAIL}?subject=Thailand%20Privilege%20Card%20x%20Vanessa%20Meraki`}><Mail aria-hidden />Email us</a>
+            <button type="button" onClick={copyEmail}>{copied ? <Check aria-hidden /> : <Copy aria-hidden />}{copied ? "Copied" : "Copy email"}</button>
           </div>
-          <a className="footer-instagram" href="https://instagram.com/vanessameraki" target="_blank" rel="noreferrer"><Instagram />@vanessameraki</a>
+          <p className="footer-small">Vanessa & Antonio · Bangkok, Thailand<br />Rates valid for the 2026 campaign season.</p>
         </footer>
       </div>
 
-      <Dialog open={activeInsight !== null} onOpenChange={(open) => { if (!open) setActiveInsight(null); }}>
-        <DialogContent className="insight-dialog">
-          <DialogTitle>{activeInsight === null ? "Insight" : insightScreens[activeInsight]?.[1]}</DialogTitle>
-          <DialogDescription>Instagram audience dashboard</DialogDescription>
-          {activeInsight !== null && insightScreens[activeInsight] ? <img src={insightScreens[activeInsight][0]} alt={insightScreens[activeInsight][1]} /> : null}
-        </DialogContent>
-      </Dialog>
+      {/* ---------- LIGHTBOX ---------- */}
+      {activeInsight !== null ? (
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label={insightScreens[activeInsight][1]} onClick={(e) => e.target === e.currentTarget && setActiveInsight(null)}>
+          <button ref={dialogClose} type="button" className="lightbox-close" onClick={() => setActiveInsight(null)} aria-label="Close"><X aria-hidden /></button>
+          <img src={insightScreens[activeInsight][0]} alt={insightScreens[activeInsight][1]} />
+        </div>
+      ) : null}
     </main>
   );
 }
