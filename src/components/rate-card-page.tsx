@@ -391,9 +391,27 @@ export function RateCardPage() {
           </div>
         </section>
 
-        {/* ---------- 02 REACH ---------- */}
+        {/* ---------- 02 INCLUDED: a receipt, zero extras ---------- */}
+        <section id="included" className="content-section">
+          <SectionHead number="02" title="Already in the price." copy="Nothing is invoiced later." />
+          <div className="receipt">
+            <div className="receipt-head"><span>Rate card 2026</span><span>{PRICE} THB</span></div>
+            <ul>
+              {scope.map(([ScopeIcon, title, copy]) => (
+                <li key={title}>
+                  <ScopeIcon className="r-ico" aria-hidden />
+                  <div><b>{title}</b><span>{copy}</span></div>
+                  <Check className="r-ok" aria-hidden />
+                </li>
+              ))}
+            </ul>
+            <div className="receipt-foot"><span>Extra costs</span><strong>0 THB</strong></div>
+          </div>
+        </section>
+
+        {/* ---------- 03 REACH ---------- */}
         <section id="channels" className="content-section reach-section">
-          <SectionHead number="02" title="Four accounts. One price." copy="The biggest Instagram audience for Thailand travel." />
+          <SectionHead number="03" title="Four accounts. One price." copy="The biggest Instagram audience for Thailand travel." />
           <div className="reach-totals">
             <div><Laurel /><Users aria-hidden /><strong>1.8M</strong><span>Followers</span><Laurel flip /></div>
             <div><Laurel /><Eye aria-hidden /><strong>50M+</strong><span>Views a month</span><Laurel flip /></div>
@@ -409,9 +427,9 @@ export function RateCardPage() {
           </div>
         </section>
 
-        {/* ---------- 03 STATS ---------- */}
+        {/* ---------- 04 STATS ---------- */}
         <section id="metrics" className="content-section">
-          <SectionHead number="03" title="Real numbers." copy="From the @vanessameraki dashboard. Tap to enlarge." />
+          <SectionHead number="04" title="Real numbers." copy="From the @vanessameraki dashboard. Tap to enlarge." />
           <div className="metric-grid">
             {metrics.map(([MetricIcon, value, label]) => (
               <div key={label}>
@@ -427,19 +445,6 @@ export function RateCardPage() {
                 <img src={image} alt={label} />
                 <span>{label}<Maximize2 aria-hidden /></span>
               </button>
-            ))}
-          </div>
-        </section>
-
-        {/* ---------- 04 INCLUDED ---------- */}
-        <section id="included" className="content-section">
-          <SectionHead number="04" title="Already in the price." />
-          <div className="row-list tile-grid">
-            {scope.map(([ScopeIcon, title, copy]) => (
-              <article key={title}>
-                <i className="ico"><ScopeIcon aria-hidden /></i>
-                <div><h3>{title}</h3><p>{copy}</p></div>
-              </article>
             ))}
           </div>
         </section>
