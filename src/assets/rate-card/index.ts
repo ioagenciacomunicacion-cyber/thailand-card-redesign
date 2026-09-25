@@ -1,7 +1,3 @@
-import vanessaLogoDark from "./vanessa-logo-dark.png";
-import heroSunset from "./hero-sunset.jpg";
-import thailandPrivilegeLogoRed from "./thailand-privilege-logo-red.png";
-
 export const rateAssets = {
   avatar_antonio_jpg: '/__l5e/assets-v1/f9b814ff-e684-43a6-8272-3ab9acf096f1/avatar-antonio.jpg',
   avatar_bangkok_jpg: '/__l5e/assets-v1/a729f557-ecc8-41d1-a938-ed5f4a55eac1/avatar-bangkok.jpg',
@@ -28,6 +24,8 @@ export const rateAssets = {
   brand_11_royal_jordanian_png: '/__l5e/assets-v1/739dc1b9-1b8a-45e5-8e28-851114bea84f/brand-11-royal-jordanian.png',
   brand_12_alain_ducasse_paris_png: '/__l5e/assets-v1/6486720b-f48f-451d-80d3-fa9c6c015323/brand-12-alain-ducasse-paris.png',
   hero_jpg: '/__l5e/assets-v1/2fb3bf6e-8d78-4e67-b650-e802eb04e610/hero.jpg',
+  home_hero_png: '/__l5e/assets-v1/3afd255c-fc6a-4b1a-b3be-dd37f32eaa75/vanessa-wat-arun-home.png',
+  home_logo_png: '/__l5e/assets-v1/953ef9e3-5cf2-4bc8-b7bf-9579136613d8/vanessa-home-logo-clean.png',
   insight_01_general_insight_jpg: '/__l5e/assets-v1/2eab676d-8f7f-45c0-b6e3-7f4d2a519145/insight-01-general-insight.jpg',
   insight_02_interactions_jpg: '/__l5e/assets-v1/45b002a0-0a7f-4352-8aec-ed7f41db8891/insight-02-interactions.jpg',
   insight_03_top_countries_jpg: '/__l5e/assets-v1/b62ea87e-ff23-4d46-9190-75c0258a9512/insight-03-top-countries.jpg',
@@ -38,7 +36,4 @@ export const rateAssets = {
   insight_08_top_location_cities_jpg: '/__l5e/assets-v1/b8bba281-288b-42b5-ae14-501801f13411/insight-08-top-location-cities.jpg',
   thailand_privilege_logo_png: '/__l5e/assets-v1/a3897918-6530-41bf-b520-6e0b6f1372b1/thailand-privilege-logo.png',
   vanessa_logo_png: '/__l5e/assets-v1/8ca7b7f5-338b-4dd6-897d-42beba0b9b0a/vanessa-logo.png',
-  vanessa_logo_dark_png: vanessaLogoDark,
-  hero_sunset_jpg: heroSunset,
-  thailand_privilege_logo_red_png: thailandPrivilegeLogoRed,
 } as const;
