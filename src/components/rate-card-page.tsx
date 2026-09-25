@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import {
   Activity,
-  ArrowDown,
   AtSign,
   BadgeDollarSign,
   BarChart3,
@@ -12,6 +11,7 @@ import {
   CalendarClock,
   Camera,
   Check,
+  ChevronDown,
   Clapperboard,
   Copy,
   Eye,
@@ -237,25 +237,44 @@ export function RateCardPage() {
     <main className="rate-page">
       {/* ---------- COVER ---------- */}
       <section className="rate-hero" aria-label="Thailand Privilege Card rate card">
-        <img src={rateAssets.hero_jpg} alt="Vanessa Meraki at Wat Arun, Bangkok" className="hero-photo" fetchPriority="high" />
-        <div className="hero-branding">
-          <img src={rateAssets.vanessa_logo_png} alt="Vanessa Meraki" className="hero-logo" />
-          <span>Rate card 2026</span>
-        </div>
-        <div className="hero-bottom">
-          <p className="hero-kicker">Prepared for Amplify</p>
-          <img src={rateAssets.thailand_privilege_logo_png} alt="Thailand Privilege" className="hero-client" />
-          <div className="hero-reach">
-            <div className="avatar-stack">
-              {channels.map(([image, handle]) => <img key={handle} src={image} alt="" />)}
-            </div>
-            <p><strong>1.8M</strong><span>followers on 4 accounts</span></p>
+        <div className="hero-visual">
+          <img src={rateAssets.hero_jpg} alt="Vanessa Meraki at Wat Arun, Bangkok" className="hero-photo" fetchPriority="high" />
+          <div className="hero-head">
+            <p className="hero-eyebrow">Rate card</p>
+            <img src={rateAssets.vanessa_logo_dark_png} alt="Vanessa Meraki" className="hero-logo" />
+            <p className="hero-label">Prepared for</p>
+            <p className="hero-client-name">Amplify</p>
+            <p className="hero-label">Project for</p>
+            <img src={rateAssets.thailand_privilege_logo_red_png} alt="Thailand Privilege" className="hero-client" />
           </div>
-          <a href="#offer" className="hero-scroll" onClick={() => setShowNavigation(true)}>
-            <span className="hero-scroll-ring"><ArrowDown aria-hidden /></span>
-            <span>See the rate</span>
-          </a>
         </div>
+
+        <div className="hero-reach-card">
+          <div className="hero-accounts">
+            {channels.map(([image, handle, followers]) => (
+              <div key={handle}>
+                <img src={image} alt="" />
+                <span className="acc-handle">{handle}</span>
+                <strong>{followers}</strong>
+                <span className="acc-label">followers</span>
+              </div>
+            ))}
+          </div>
+          <div className="hero-total">
+            <strong>1.8M</strong>
+            <span>combined followers · 50M+ views a month</span>
+          </div>
+        </div>
+
+        <div className="hero-claim">
+          <h1>The largest Instagram audience<br />in the world</h1>
+          <p>Following Thailand travel content</p>
+        </div>
+
+        <a href="#offer" className="hero-scroll" onClick={() => setShowNavigation(true)}>
+          <span className="hero-scroll-ring"><ChevronDown aria-hidden /></span>
+          <span>See the rate</span>
+        </a>
       </section>
 
       {/* ---------- STICKY BAR: 6 items, no side scroll ---------- */}
