@@ -1,4 +1,5 @@
 import vanessaLogoDark from "./vanessa-logo-dark.png";
+import heroSunset from "./hero-sunset.jpg";
 import thailandPrivilegeLogoRed from "./thailand-privilege-logo-red.png";
 
 export const rateAssets = {
@@ -38,5 +39,6 @@ export const rateAssets = {
   thailand_privilege_logo_png: '/__l5e/assets-v1/a3897918-6530-41bf-b520-6e0b6f1372b1/thailand-privilege-logo.png',
   vanessa_logo_png: '/__l5e/assets-v1/8ca7b7f5-338b-4dd6-897d-42beba0b9b0a/vanessa-logo.png',
   vanessa_logo_dark_png: vanessaLogoDark,
+  hero_sunset_jpg: heroSunset,
   thailand_privilege_logo_red_png: thailandPrivilegeLogoRed,
 } as const;
