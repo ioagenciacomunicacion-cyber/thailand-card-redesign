@@ -382,7 +382,7 @@ export function RateCardPage() {
           <div className="insight-grid">
             {insightScreens.map(([image, label], index) => (
               <button type="button" key={label} className="insight-card" onClick={() => setActiveInsight(index)} aria-label={`Enlarge ${label}`}>
-                <img src={image} alt={label} loading="lazy" />
+                <img src={image} alt={label} />
                 <span>{label}<Maximize2 aria-hidden /></span>
               </button>
             ))}
@@ -392,7 +392,7 @@ export function RateCardPage() {
         {/* ---------- 04 INCLUDED ---------- */}
         <section id="included" className="content-section">
           <SectionHead number="04" title="Already in the price." />
-          <div className="row-list">
+          <div className="row-list tile-grid">
             {scope.map(([ScopeIcon, title, copy]) => (
               <article key={title}>
                 <i className="ico"><ScopeIcon aria-hidden /></i>
@@ -425,7 +425,7 @@ export function RateCardPage() {
             <div><Wallet aria-hidden /><strong>50%</strong><span>To start</span></div>
             <div><CalendarCheck aria-hidden /><strong>50%</strong><span>On delivery</span></div>
           </div>
-          <div className="row-list">
+          <div className="row-list tile-grid">
             {terms.map(([TermIcon, title, copy]) => (
               <article key={title}>
                 <i className="ico"><TermIcon aria-hidden /></i>
@@ -451,7 +451,7 @@ export function RateCardPage() {
           </div>
           <h3 className="sub-title">Brands we've worked with</h3>
           <div className="brand-grid">
-            {brandLogos.map(([image, label]) => <div key={label}><img src={image} alt={label} loading="lazy" /></div>)}
+            {brandLogos.map(([image, label]) => <div key={label}><img src={image} alt={label} /></div>)}
           </div>
         </section>
 
