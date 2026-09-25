@@ -460,27 +460,32 @@ export function RateCardPage() {
           </ol>
         </section>
 
-        {/* ---------- 06 TERMS ---------- */}
+        {/* ---------- 06 TERMS: Thai company first, details on tap ---------- */}
         <section id="terms" className="content-section">
-          <SectionHead number="06" title="Payment & usage." />
-          <div className="pay-split">
-            <div><Wallet aria-hidden /><strong>50%</strong><span>To start</span></div>
-            <div><CalendarCheck aria-hidden /><strong>50%</strong><span>On delivery</span></div>
+          <SectionHead number="06" title="Local & simple." />
+          <div className="company-card">
+            <i className="ico"><Landmark aria-hidden /></i>
+            <div>
+              <h3>Thai company. Thai bank account.</h3>
+              <p>We invoice locally from our registered Thai company and provide every document your accounting needs.</p>
+            </div>
           </div>
-          <div className="row-list tile-grid">
-            {terms.map(([TermIcon, title, copy]) => (
-              <article key={title}>
-                <i className="ico"><TermIcon aria-hidden /></i>
-                <div><h3>{title}</h3><p>{copy}</p></div>
-              </article>
-            ))}
+          <div className="term-acc">
+            <details>
+              <summary><Wallet aria-hidden /><span>Payment</span><em>50 / 50</em><ChevronDown className="chev" aria-hidden /></summary>
+              <p>50% to start, 50% on delivery of the draft.<br />Local Thai bank transfer. Prices exclude taxes.</p>
+            </details>
+            <details>
+              <summary><AtSign aria-hidden /><span>Usage</span><em>30 days</em><ChevronDown className="chev" aria-hidden /></summary>
+              <p>Brand tagged in the first line of the caption.<br />Video used as delivered. 30-day Spark Ads code included.</p>
+            </details>
+            <details>
+              <summary><Plus aria-hidden /><span>Extras</span><em>On request</em><ChevronDown className="chev" aria-hidden /></summary>
+              <div className="extra-chips">
+                {onRequest.map(([ReqIcon, label]) => <span key={label}><ReqIcon aria-hidden />{label}</span>)}
+              </div>
+            </details>
           </div>
-          <h3 className="sub-title">Price on request</h3>
-          <ul className="request-list">
-            {onRequest.map(([ReqIcon, label]) => (
-              <li key={label}><i className="ico"><ReqIcon aria-hidden /></i><span>{label}</span><em>On request</em></li>
-            ))}
-          </ul>
         </section>
 
         {/* ---------- 07 ABOUT ---------- */}
