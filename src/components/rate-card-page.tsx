@@ -316,7 +316,7 @@ export function RateCardPage() {
       {/* ---------- COVER ---------- */}
       <section className="rate-hero" aria-label="Thailand Privilege Card rate card">
         <div className="hero-visual">
-          <img src={rateAssets.hero_wat_arun_jpg} alt="Vanessa Meraki at Wat Arun, Bangkok" className="hero-photo" fetchPriority="high" />
+          <img src={rateAssets.hero_couple_jpg} alt="Vanessa and Antonio at Wat Arun, Bangkok" className="hero-photo" fetchPriority="high" />
           <div className="hero-head">
             <p className="hero-eyebrow">Rate card</p>
             <img src={rateAssets.vanessa_logo_dark_png} alt="Vanessa Meraki" className="hero-logo" />
