@@ -100,7 +100,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .nav.scrolled{background:rgba(20,12,10,.72);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3)}
 .nav.hide{transform:translateY(-110%)}
 .nav-logo img{height:2.1rem;width:auto}
-.nav-links{display:flex;gap:2rem;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.6rem;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase}
 .nav-links a{position:relative;opacity:.8;transition:opacity .3s}
 .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-.3rem;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease-out)}
 .nav-links a:hover{opacity:1}
@@ -112,7 +112,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .btn svg{width:1rem;height:1rem;transition:transform .5s var(--ease-out)}
 .btn:hover svg{transform:translateX(.25rem) rotate(-45deg)}
 .btn-ghost{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1px var(--line-dark)}
-@media (max-width:900px){.nav-links{display:none}}
+@media (max-width:1100px){.nav-links{display:none}}
 
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:7rem var(--pad) clamp(2rem,5vw,3.5rem);overflow:hidden}
@@ -436,7 +436,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .nav-right{display:flex;align-items:center;gap:.6rem}
 .mnav{position:fixed;inset:0;z-index:49;background:var(--cherry-deep);color:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:6rem var(--pad) calc(2rem + env(safe-area-inset-bottom,0px));clip-path:circle(0% at calc(100% - 2.6rem) 2.6rem);transition:clip-path .8s var(--ease-io);visibility:hidden}
 .menu-open .mnav{clip-path:circle(150% at calc(100% - 2.6rem) 2.6rem);visibility:visible}
-.mnav a.l{display:flex;align-items:baseline;gap:1rem;font-family:var(--display);font-size:clamp(2.6rem,12vw,4rem);line-height:1.08;text-transform:uppercase;opacity:0;transform:translateY(1.5rem);transition:opacity .6s var(--ease-out),transform .8s var(--ease-out);transition-delay:calc(var(--i) * 60ms + 250ms)}
+.mnav a.l{display:flex;align-items:baseline;gap:1rem;font-family:var(--display);font-size:clamp(2.2rem,10vw,3.6rem);line-height:1.08;text-transform:uppercase;opacity:0;transform:translateY(1.5rem);transition:opacity .6s var(--ease-out),transform .8s var(--ease-out);transition-delay:calc(var(--i) * 60ms + 250ms)}
 .mnav a.l small{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--butter);text-transform:none}
 .menu-open .mnav a.l{opacity:1;transform:none}
 .mnav-foot{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.5rem}
@@ -466,6 +466,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   .hero{padding-bottom:2.25rem}
   .scrub-text{font-size:1.2rem}
 }
+@media (max-width:1100px){.burger{display:block}}
 @media (max-width:420px){.nav .btn span.long{display:none}}
 @media (max-width:640px){
   .hero{padding-top:5.25rem}
@@ -484,6 +485,62 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   .feature:hover{color:inherit}
 }
 
+/* ---------- Tripscout network wall ---------- */
+.net{margin-top:clamp(3.5rem,8vw,6rem);text-align:center}
+.net h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,6vw,3.6rem);line-height:.95;margin:1rem 0 .8rem}
+.net>p{max-width:34rem;margin:0 auto;color:#5a4f48}
+.net-grid{list-style:none;padding:0;margin:clamp(2rem,5vw,3rem) auto 0;max-width:62rem;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.9rem,2.5vw,1.6rem) clamp(.6rem,2vw,1.2rem)}
+.net-grid li{display:flex;flex-direction:column;align-items:center;gap:.45rem;opacity:0;transform:scale(.6) translateY(1rem);transition:opacity .6s var(--ease-out),transform .9s cubic-bezier(.34,1.56,.64,1);transition-delay:calc(var(--i) * 40ms)}
+.net-grid.in li{opacity:1;transform:none}
+.net-grid a,.net-grid span.lg{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:1;border-radius:50%;transition:transform .5s var(--ease-out)}
+.net-grid img{width:100%;height:100%;object-fit:contain}
+.net-grid .own img{border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--cream),0 0 0 5px var(--cherry)}
+.net-grid a:hover,.net-grid span.lg:hover{transform:translateY(-4px) rotate(-4deg)}
+.net-grid small{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);line-height:1.3}
+.net-grid .own small{color:var(--cherry);font-weight:600}
+@media (min-width:640px){.net-grid{grid-template-columns:repeat(6,1fr)}}
+@media (min-width:1000px){.net-grid{grid-template-columns:repeat(8,1fr)}}
+
+/* ---------- Explore account pages ---------- */
+.acc{position:relative;background:var(--night);color:var(--cream);overflow:hidden}
+.acc-cover{position:relative;min-height:88svh;display:flex;flex-direction:column;justify-content:flex-end;padding:6rem var(--pad) 2.5rem;isolation:isolate;overflow:hidden}
+.acc-cover video{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover}
+.acc-cover::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 55%,transparent) 0%,color-mix(in srgb,var(--acc) 25%,transparent) 40%,rgba(20,12,10,.55) 70%,var(--night) 100%)}
+.acc-word{position:absolute;left:0;top:5.5rem;z-index:-1;display:flex;width:max-content;font-family:var(--display);font-size:clamp(6rem,30vw,18rem);line-height:.8;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px rgba(246,235,217,.5);white-space:nowrap;animation:marq 28s linear infinite;pointer-events:none}
+.acc-word span{padding-right:.3em}
+.acc-id{display:flex;align-items:center;gap:1rem}
+.acc-av{position:relative;width:clamp(5rem,18vw,7.5rem);aspect-ratio:1;flex:none;border-radius:50%;padding:4px}
+.acc-av::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--gold),var(--butter),var(--cream),var(--gold));animation:spin 6s linear infinite}
+.acc-av img{position:relative;width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--night)}
+.acc-handle{font-family:var(--display);font-size:clamp(1.3rem,6.4vw,4.4rem);line-height:.95;margin:0;text-transform:none;overflow-wrap:anywhere}
+.acc-role{display:inline-flex;margin-top:.6rem;padding:.4rem .8rem;border-radius:99px;background:var(--cream);color:var(--cherry-deep);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.acc-stats{display:grid;grid-template-columns:1fr 1fr;margin-top:1.8rem;border-top:1px solid rgba(246,235,217,.25)}
+.acc-stats div{padding:1.2rem 0 .4rem}
+.acc-stats div+div{padding-left:1.2rem;border-left:1px solid rgba(246,235,217,.25)}
+.acc-stats b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(2.8rem,12vw,5.5rem);line-height:.95}
+.acc-stats b em{font-style:normal;color:var(--butter)}
+.acc-stats div>span{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;opacity:.8}
+.acc-body{padding:3rem var(--pad) clamp(4rem,8vw,6rem)}
+.acc-body .wrap{display:grid;gap:2.5rem}
+.acc-body .wrap>*{min-width:0}
+.acc-id>div{min-width:0}
+.acc-intro p{margin:0 0 1rem;font-size:1.05rem;color:rgba(246,235,217,.8)}
+.acc-intro .script{display:block;font-size:clamp(1.6rem,5vw,2.4rem);line-height:1.15;color:var(--butter);margin-bottom:1rem}
+.acc-cta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.acc-reels{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--pad) * -1);padding:0 var(--pad) .5rem;scrollbar-width:none}
+.acc-reels::-webkit-scrollbar{display:none}
+.acc-reels .reel{flex:none;width:62vw;max-width:17rem;scroll-snap-align:start}
+.acc-reels-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+@media (min-width:1000px){
+  .acc-cover{min-height:92vh;padding-bottom:3.5rem}
+  .acc-body .wrap{grid-template-columns:.9fr 1.4fr;align-items:start}
+  .acc-reels{overflow:visible;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr)}
+  .acc-reels .reel{width:auto;max-width:none}
+  .acc-reels .reel:nth-child(2){margin-top:3rem}
+  .acc-reels-label .swipe-hint{display:none}
+}
+@media (max-width:999px){.acc-reels-label .swipe-hint{display:inline-flex}}
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important}
@@ -491,7 +548,8 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   .line-mask>span,.hero-title .ch{transform:none}
   .img-reveal::before{display:none}.img-reveal img{transform:none}
   .scrub-text .w,.quote-text .qw{opacity:1;color:inherit}
-  .marquee-track,.logo-track,.stills-track{animation:none}
+  .marquee-track,.logo-track,.stills-track,.acc-word{animation:none}
+  .net-grid li{opacity:1;transform:none}
   body::after{display:none}
 }
 </style>
@@ -510,7 +568,9 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   <nav class="nav-links" aria-label="Sections">
     <a href="#us">About</a>
     <a href="#stats">Audience</a>
-    <a href="#ambassador">Ambassador</a>
+    <a href="#ambassador">Tripscout</a>
+    <a href="#thailand">Thailand</a>
+    <a href="#bangkok">Bangkok</a>
     <a href="#services">Services</a>
     <a href="#partners">Partners</a>
   </nav>
@@ -525,11 +585,13 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 <nav class="mnav" id="mnav" aria-label="Menu">
   <a class="l" href="#us" style="--i:0"><small>01</small>About</a>
   <a class="l" href="#stats" style="--i:1"><small>03</small>Audience</a>
-  <a class="l" href="#ambassador" style="--i:2"><small>04</small>Ambassador</a>
-  <a class="l" href="#portfolio" style="--i:3"><small>07</small>Portfolio</a>
-  <a class="l" href="#services" style="--i:4"><small>08</small>Services</a>
-  <a class="l" href="#partners" style="--i:5"><small>09</small>Partners</a>
-  <a class="l" href="#contact" style="--i:6"><small>10</small>Contact</a>
+  <a class="l" href="#ambassador" style="--i:2"><small>04</small>Tripscout</a>
+  <a class="l" href="#thailand" style="--i:3"><small>05</small>Thailand</a>
+  <a class="l" href="#bangkok" style="--i:4"><small>06</small>Bangkok</a>
+  <a class="l" href="#portfolio" style="--i:5"><small>09</small>Portfolio</a>
+  <a class="l" href="#services" style="--i:6"><small>10</small>Services</a>
+  <a class="l" href="#partners" style="--i:7"><small>11</small>Partners</a>
+  <a class="l" href="#contact" style="--i:8"><small>12</small>Contact</a>
   <div class="mnav-foot">
     <a href="https://instagram.com/vanessameraki" target="_blank" rel="noopener">Instagram</a>
     <a href="https://www.tiktok.com/@vanessameraki" target="_blank" rel="noopener">TikTok</a>
@@ -733,13 +795,13 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
     </div>
 
     <div class="accounts">
-      <a class="acct rv" data-rv data-tilt href="https://instagram.com/thailand.explores" target="_blank" rel="noopener">
+      <a class="acct rv" data-rv data-tilt href="#thailand">
         <span class="acct-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         <div class="acct-top"><img class="acct-av" src="assets/avatar-thailand-explores.jpg" alt="" width="200" height="200" loading="lazy"><div><div class="acct-name">@thailand.explores</div><div class="acct-role">Handler &amp; ambassador</div></div></div>
         <b><span data-count="970">0</span>K</b><span class="lbl">Followers</span>
         <div class="acct-reach"><span class="lbl">Reach / month</span><strong>+<span data-count="50">0</span>M</strong></div>
       </a>
-      <a class="acct rv" data-rv data-tilt style="--d:120" href="https://instagram.com/bangkok.explore" target="_blank" rel="noopener">
+      <a class="acct rv" data-rv data-tilt style="--d:120" href="#bangkok">
         <span class="acct-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         <div class="acct-top"><img class="acct-av" src="assets/avatar-bangkok-explore.jpg" alt="" width="200" height="200" loading="lazy"><div><div class="acct-name">@bangkok.explore</div><div class="acct-role">Handler &amp; ambassador</div></div></div>
         <b><span data-count="670">0</span>K</b><span class="lbl">Followers</span>
@@ -766,6 +828,143 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
         <span class="reel-tag">Watch<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
       </a>
     </div>
+
+    <div class="net">
+      <span class="eyebrow rv" data-rv>The Tripscout network</span>
+      <h3 class="rv" data-rv>One network, <em class="script">23 travel pages</em></h3>
+      <p class="rv" data-rv>Tripscout pages by @hotel. As an ambassador, Vanessa can publish across the whole group — from Thailand and Bangkok, which she manages, to Paris, London, New York and beyond.</p>
+      <ul class="net-grid" data-rv>
+        <li class="own" style="--i:0"><a href="#thailand" aria-label="Thailand Explores"><img src="assets/avatar-thailand-explores.jpg" alt="" loading="lazy"></a><small>Thailand</small></li>
+        <li class="own" style="--i:1"><a href="#bangkok" aria-label="Bangkok Explores"><img src="assets/avatar-bangkok-explore.jpg" alt="" loading="lazy"></a><small>Bangkok</small></li>
+        <li class="own" style="--i:2"><a href="https://instagram.com/spainexplore" target="_blank" rel="noopener" aria-label="Spain Explores"><img src="assets/avatar-spain-explore.jpg" alt="" loading="lazy"></a><small>Spain</small></li>
+        <li style="--i:3"><span class="lg"><img src="assets/network/paris.png" alt="Paris by @hotel" loading="lazy"></span><small>Paris</small></li>
+        <li style="--i:4"><span class="lg"><img src="assets/network/europe.png" alt="Europe by @hotel" loading="lazy"></span><small>Europe</small></li>
+        <li style="--i:5"><span class="lg"><img src="assets/network/rome.png" alt="Rome by @hotel" loading="lazy"></span><small>Rome</small></li>
+        <li style="--i:6"><span class="lg"><img src="assets/network/dubai.png" alt="Dubai by @hotel" loading="lazy"></span><small>Dubai</small></li>
+        <li style="--i:7"><span class="lg"><img src="assets/network/london.png" alt="London by @hotel" loading="lazy"></span><small>London</small></li>
+        <li style="--i:8"><span class="lg"><img src="assets/network/seoul.png" alt="Seoul by @hotel" loading="lazy"></span><small>Seoul</small></li>
+        <li style="--i:9"><span class="lg"><img src="assets/network/asia.png" alt="Asia by @hotel" loading="lazy"></span><small>Asia</small></li>
+        <li style="--i:10"><span class="lg"><img src="assets/network/foodies.png" alt="Foodies by @hotel" loading="lazy"></span><small>Foodies</small></li>
+        <li style="--i:11"><span class="lg"><img src="assets/network/outdoor.png" alt="Outdoor by @hotel" loading="lazy"></span><small>Outdoor</small></li>
+        <li style="--i:12"><span class="lg"><img src="assets/network/at-hotel.png" alt="@hotel by @hotel" loading="lazy"></span><small>@hotel</small></li>
+        <li style="--i:13"><span class="lg"><img src="assets/network/usa.png" alt="USA by @hotel" loading="lazy"></span><small>USA</small></li>
+        <li style="--i:14"><span class="lg"><img src="assets/network/new-york.png" alt="New York by @hotel" loading="lazy"></span><small>New York</small></li>
+        <li style="--i:15"><span class="lg"><img src="assets/network/vegas.png" alt="Vegas by @hotel" loading="lazy"></span><small>Vegas</small></li>
+        <li style="--i:16"><span class="lg"><img src="assets/network/egypt.png" alt="Egypt by @hotel" loading="lazy"></span><small>Egypt</small></li>
+        <li style="--i:17"><span class="lg"><img src="assets/network/cairo.png" alt="Cairo by @hotel" loading="lazy"></span><small>Cairo</small></li>
+        <li style="--i:18"><span class="lg"><img src="assets/network/san-francisco.png" alt="San Francisco by @hotel" loading="lazy"></span><small>San Francisco</small></li>
+        <li style="--i:19"><span class="lg"><img src="assets/network/miami.png" alt="Miami by @hotel" loading="lazy"></span><small>Miami</small></li>
+        <li style="--i:20"><span class="lg"><img src="assets/network/we-live-to-explore.png" alt="We live to explore by @hotel" loading="lazy"></span><small>We live to explore</small></li>
+        <li style="--i:21"><span class="lg"><img src="assets/network/vacation-rentals.png" alt="Vacation rentals by @hotel" loading="lazy"></span><small>Vacation rentals</small></li>
+        <li style="--i:22"><span class="lg"><img src="assets/network/road-trip.png" alt="Road trip by @hotel" loading="lazy"></span><small>Road trip</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THAILAND EXPLORES ================= -->
+<section class="acc" id="thailand" style="--acc:#C42126" aria-label="@thailand.explores">
+  <div class="acc-cover">
+    <video data-src="assets/reels/drone-sea.mp4" poster="assets/reels/drone-sea.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <div class="acc-word" aria-hidden="true"><span>Thailand</span><span>Thailand</span><span>Thailand</span><span>Thailand</span></div>
+    <span class="eyebrow rv" data-rv style="color:var(--butter);margin-bottom:1.2rem"><span class="sec-num" style="color:var(--butter)">05</span>Tripscout · Thailand</span>
+    <div class="acc-id rv" data-rv>
+      <span class="acc-av"><img src="assets/avatar-thailand-explores.jpg" alt="" loading="lazy"></span>
+      <div>
+        <h2 class="acc-handle">@thailand.explores</h2>
+        <span class="acc-role">Handler &amp; ambassador</span>
+      </div>
+    </div>
+    <div class="acc-stats" data-rv>
+      <div><b><span data-count="970">0</span><em>K</em></b><span>Followers</span></div>
+      <div><b><em>+</em><span data-count="50">0</span><em>M</em></b><span>Reach / month</span></div>
+    </div>
+  </div>
+  <div class="acc-body">
+    <div class="wrap">
+      <div class="acc-intro rv" data-rv>
+        <em class="script">Islands, beaches and resorts across the whole country.</em>
+        <p>Thailand Explores is the Tripscout page for Thailand. Vanessa manages it as handler and ambassador, so your brand is filmed, written and published by the same team.</p>
+        <p>A natural home for resorts, island hotels, tourism boards and experiences that want to reach travellers planning their Thailand trip.</p>
+        <div class="acc-cta">
+          <a class="btn" href="https://instagram.com/thailand.explores" target="_blank" rel="noopener">Open @thailand.explores <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="mailto:collab@vanessameraki.com?subject=Campaign%20on%20@thailand.explores">Advertise here</a>
+        </div>
+      </div>
+      <div>
+        <div class="acc-reels-label"><span>What we create</span><span class="swipe-hint" aria-hidden="true">Swipe <i></i></span></div>
+        <div class="acc-reels">
+          <a class="reel rv" data-rv style="--d:0" href="https://www.instagram.com/reel/Cu13a9UtJK8/" target="_blank" rel="noopener" aria-label="Watch Island beach reel on Instagram">
+            <video data-src="assets/reels/beach-drone.mp4" poster="assets/reels/beach-drone.jpg" muted loop playsinline preload="none"></video>
+            <span class="reel-live">Reel</span>
+            <span class="reel-tag">Island beach<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a>
+          <a class="reel rv" data-rv style="--d:120" href="https://www.instagram.com/reel/CvuiqEcOBsj/" target="_blank" rel="noopener" aria-label="Watch Floating breakfast reel on Instagram">
+            <video data-src="assets/reels/partner-breakfast.mp4" poster="assets/reels/partner-breakfast.jpg" muted loop playsinline preload="none"></video>
+            <span class="reel-live">Reel</span>
+            <span class="reel-tag">Floating breakfast<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a>
+          <a class="reel rv" data-rv style="--d:240" href="https://www.instagram.com/reel/CydqHu1sBlZ/" target="_blank" rel="noopener" aria-label="Watch Pool villa reel on Instagram">
+            <video data-src="assets/reels/villa-pool.mp4" poster="assets/reels/villa-pool.jpg" muted loop playsinline preload="none"></video>
+            <span class="reel-live">Reel</span>
+            <span class="reel-tag">Pool villa<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANGKOK EXPLORES ================= -->
+<section class="acc" id="bangkok" style="--acc:#C42126" aria-label="@bangkok.explore">
+  <div class="acc-cover">
+    <video data-src="assets/reels/hotel-room.mp4" poster="assets/reels/hotel-room.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <div class="acc-word" aria-hidden="true"><span>Bangkok</span><span>Bangkok</span><span>Bangkok</span><span>Bangkok</span></div>
+    <span class="eyebrow rv" data-rv style="color:var(--butter);margin-bottom:1.2rem"><span class="sec-num" style="color:var(--butter)">06</span>Tripscout · Bangkok</span>
+    <div class="acc-id rv" data-rv>
+      <span class="acc-av"><img src="assets/avatar-bangkok-explore.jpg" alt="" loading="lazy"></span>
+      <div>
+        <h2 class="acc-handle">@bangkok.explore</h2>
+        <span class="acc-role">Handler &amp; ambassador</span>
+      </div>
+    </div>
+    <div class="acc-stats" data-rv>
+      <div><b><span data-count="670">0</span><em>K</em></b><span>Followers</span></div>
+      <div><b><em>+</em><span data-count="30">0</span><em>M</em></b><span>Reach / month</span></div>
+    </div>
+  </div>
+  <div class="acc-body">
+    <div class="wrap">
+      <div class="acc-intro rv" data-rv>
+        <em class="script">Hotels, rooftops and tables in the capital.</em>
+        <p>Bangkok Explore is the Tripscout page for Bangkok. Vanessa manages it as handler and ambassador, from the first shot to the published post.</p>
+        <p>Made for city hotels, rooftop bars, restaurants, spas and new openings that want to be seen by people visiting — or living in — Bangkok.</p>
+        <div class="acc-cta">
+          <a class="btn" href="https://instagram.com/bangkok.explore" target="_blank" rel="noopener">Open @bangkok.explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="mailto:collab@vanessameraki.com?subject=Campaign%20on%20@bangkok.explore">Advertise here</a>
+        </div>
+      </div>
+      <div>
+        <div class="acc-reels-label"><span>What we create</span><span class="swipe-hint" aria-hidden="true">Swipe <i></i></span></div>
+        <div class="acc-reels">
+          <a class="reel rv" data-rv style="--d:0" href="https://www.instagram.com/reel/C3qGIhHvsuY/" target="_blank" rel="noopener" aria-label="Watch City suite reel on Instagram">
+            <video data-src="assets/reels/hotel.mp4" poster="assets/reels/hotel.jpg" muted loop playsinline preload="none"></video>
+            <span class="reel-live">Reel</span>
+            <span class="reel-tag">City suite<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a>
+          <a class="reel rv" data-rv style="--d:120" href="https://www.instagram.com/reel/C4uRlmTvwAw/" target="_blank" rel="noopener" aria-label="Watch Rooftop sunset reel on Instagram">
+            <video data-src="assets/reels/boho.mp4" poster="assets/reels/boho.jpg" muted loop playsinline preload="none"></video>
+            <span class="reel-live">Reel</span>
+            <span class="reel-tag">Rooftop sunset<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a>
+          <a class="reel rv" data-rv style="--d:240" href="https://www.instagram.com/reel/CrJBh6Gu9fY/" target="_blank" rel="noopener" aria-label="Watch Rooftop pool reel on Instagram">
+            <video data-src="assets/reels/ugc.mp4" poster="assets/reels/ugc.jpg" muted loop playsinline preload="none"></video>
+            <span class="reel-live">Reel</span>
+            <span class="reel-tag">Rooftop pool<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -773,7 +972,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 <section class="section" id="luxury">
   <div class="wrap lwt-grid">
     <div class="lwt-copy">
-      <span class="eyebrow rv" data-rv><span class="sec-num">05</span>Ambassador of Luxury World Traveler</span>
+      <span class="eyebrow rv" data-rv><span class="sec-num">07</span>Ambassador of Luxury World Traveler</span>
       <div class="rv" data-rv><img class="lwt-logo" src="assets/luxury-world-traveler.png" alt="Luxury World Traveler" loading="lazy"></div>
       <div class="lwt-big" data-rv aria-label="3.1 million followers">3,1M<span class="fill" aria-hidden="true">3,1M</span></div>
       <p class="rv" data-rv style="letter-spacing:.25em;text-transform:uppercase;font-size:.8rem;color:var(--gold)">Followers</p>
@@ -806,7 +1005,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 <section class="section quote" id="campaign">
   <div class="quote-bg" aria-hidden="true"><img src="assets/photos/temple-garden.jpg" alt="" data-parallax="-0.15" loading="lazy"></div>
   <div class="wrap">
-    <span class="eyebrow rv" data-rv><span class="sec-num">06</span>Campaign</span>
+    <span class="eyebrow rv" data-rv><span class="sec-num">08</span>Campaign</span>
     <p class="quote-text" data-quote>
       <em class="script">Travel storytellers</em> awaken the soul and inspire a desire to explore and discover. Their tales guide us to faraway lands and unknown adventures.
     </p>
@@ -818,7 +1017,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   <div class="wrap">
     <div class="pf-head">
       <div>
-        <span class="eyebrow rv" data-rv><span class="sec-num">07</span>Creative portfolio</span>
+        <span class="eyebrow rv" data-rv><span class="sec-num">09</span>Creative portfolio</span>
         <h2 class="h-display h-l" style="margin-top:1.2rem" data-rv>
           <span class="line-mask"><span>Boosting brands</span></span>
           <span class="line-mask"><span style="--d:100">with <em class="script">human</em> talent</span></span>
@@ -884,7 +1083,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
     <div class="svc-sticky">
       <div class="svc-head">
         <div>
-          <span class="eyebrow"><span class="sec-num">08</span>Unique services</span>
+          <span class="eyebrow"><span class="sec-num">10</span>Unique services</span>
           <h2 class="h-display h-l" style="margin-top:1rem">Creative <em class="script">style</em></h2>
         </div>
         <span class="swipe-hint" aria-hidden="true">Swipe <i></i></span>
@@ -933,7 +1132,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 <!-- ================= PARTNERS ================= -->
 <section class="section partners partners-dark" id="partners">
   <div class="partners-head">
-    <span class="eyebrow rv" data-rv><span class="sec-num">09</span>Partners</span>
+    <span class="eyebrow rv" data-rv><span class="sec-num">11</span>Partners</span>
     <h2 class="h-display h-l" data-rv><span class="line-mask"><span>Brand &amp; <em class="script">agreement</em></span></span></h2>
   </div>
   <div class="logo-row">
@@ -992,7 +1191,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 <!-- ================= CONTACT ================= -->
 <section class="section contact" id="contact">
   <div class="wrap">
-    <span class="eyebrow rv" data-rv><span class="sec-num">10</span>Work with us</span>
+    <span class="eyebrow rv" data-rv><span class="sec-num">12</span>Work with us</span>
     <h2 class="h-display h-l" data-rv>
       <span class="line-mask"><span>Let's create</span></span>
       <span class="line-mask"><span style="--d:100">something <em class="script">spectacular</em></span></span>
