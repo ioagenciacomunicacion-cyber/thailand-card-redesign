@@ -409,6 +409,21 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .collabs p{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.25;color:var(--butter);margin:0}
 @media (max-width:900px){.collabs{grid-template-columns:1fr 1fr}.collabs p{grid-column:1/-1;order:-1}}
 
+/* stills from the reels */
+.stills{margin-top:clamp(3.5rem,7vw,6rem)}
+.stills-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.stills-head h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1;margin:.8rem 0 0}
+.stills-head p{margin:0;max-width:26rem;font-size:.95rem;color:#5a4f48}
+.stills-row{overflow:hidden;margin:0 calc(var(--pad) * -1);-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.stills-track{display:flex;align-items:flex-start;gap:1rem;width:max-content;padding:0 0 1rem 1rem;animation:marq 70s linear infinite}
+.stills-row:hover .stills-track{animation-play-state:paused}
+.still{position:relative;flex:none;width:clamp(12rem,19vw,16rem);aspect-ratio:9/14;margin:0;border-radius:1.25rem;overflow:hidden;box-shadow:0 1.5rem 2.5rem -1.5rem rgba(126,13,20,.45)}
+.still:nth-child(even){margin-top:2.5rem}
+.still img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-out)}
+.still:hover img{transform:scale(1.07)}
+.still figcaption{position:absolute;left:.9rem;right:.9rem;bottom:.8rem;z-index:2;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream)}
+.still::after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(20,12,10,.7));pointer-events:none}
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important}
@@ -416,7 +431,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   .line-mask>span,.hero-title .ch{transform:none}
   .img-reveal{clip-path:none}.img-reveal img{transform:none}
   .scrub-text .w,.quote-text .qw{opacity:1;color:inherit}
-  .marquee-track,.logo-track{animation:none}
+  .marquee-track,.logo-track,.stills-track{animation:none}
   body::after{display:none}
 }
 </style>
@@ -752,6 +767,31 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
       <div class="ph img-reveal" data-rv style="--d:120"><img src="assets/hero-wat-arun.jpg" alt="Vanessa at Wat Arun, Bangkok" loading="lazy" style="object-position:50% 40%"></div>
       <div class="ph img-reveal" data-rv style="--d:240"><img src="assets/photos/pool-hat.jpg" alt="Vanessa relaxing by an infinity pool" loading="lazy"></div>
     </div>
+    <div class="stills">
+      <div class="stills-head">
+        <div>
+          <span class="eyebrow rv" data-rv>Stills from our reels</span>
+          <h3 class="rv" data-rv>Every reel, <em class="script">a photograph</em></h3>
+        </div>
+        <p class="rv" data-rv>The best moment of each reel, retouched in Adobe Lightroom — the same eye for light and composition in motion and in stills.</p>
+      </div>
+      <div class="stills-row">
+        <div class="stills-track">
+        <figure class="still"><img src="assets/stills/about.jpg" alt="Lakeside villa — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Lakeside villa</figcaption></figure>
+        <figure class="still"><img src="assets/stills/beach-drone.jpg" alt="Island beach — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Island beach</figcaption></figure>
+        <figure class="still"><img src="assets/stills/boho.jpg" alt="Rooftop sunset — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Rooftop sunset</figcaption></figure>
+        <figure class="still"><img src="assets/stills/creative.jpg" alt="Palace interiors — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Palace interiors</figcaption></figure>
+        <figure class="still"><img src="assets/stills/drone-sea.jpg" alt="Longtail boat — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Longtail boat</figcaption></figure>
+        <figure class="still"><img src="assets/stills/floating-breakfast.jpg" alt="Floating breakfast — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Floating breakfast</figcaption></figure>
+        <figure class="still"><img src="assets/stills/hotel-room.jpg" alt="Riverside pool — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Riverside pool</figcaption></figure>
+        <figure class="still"><img src="assets/stills/hotel.jpg" alt="City suite — still from a Vanessa Meraki reel" loading="lazy"><figcaption>City suite</figcaption></figure>
+        <figure class="still"><img src="assets/stills/music.jpg" alt="Japanese bar — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Japanese bar</figcaption></figure>
+        <figure class="still"><img src="assets/stills/ugc.jpg" alt="Rooftop pool — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Rooftop pool</figcaption></figure>
+        <figure class="still"><img src="assets/stills/villa-pool.jpg" alt="Pool villa — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Pool villa</figcaption></figure>
+        <figure class="still"><img src="assets/stills/villa-tour.jpg" alt="Glamping suite — still from a Vanessa Meraki reel" loading="lazy"><figcaption>Glamping suite</figcaption></figure>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -899,7 +939,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   $('#yr').textContent = new Date().getFullYear();
 
   /* ---- duplicate marquee content so the -50% loop is seamless ---- */
-  $$('.logo-track, .marquee-track').forEach(t => {
+  $$('.logo-track, .marquee-track, .stills-track').forEach(t => {
     [...t.children].forEach(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.querySelectorAll('img').forEach(i => i.alt = ''); t.append(c); });
   });
 
