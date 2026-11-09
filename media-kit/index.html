@@ -8,11 +8,11 @@
 <meta name="theme-color" content="#140C0A">
 <meta property="og:title" content="Vanessa Meraki · Media Kit">
 <meta property="og:description" content="Travel storytellers based in Thailand & Spain. Creative, high quality content for hotels, resorts, restaurants and brands.">
-<meta property="og:image" content="assets/hero-wat-arun.jpg">
+<meta property="og:image" content="assets/photos/night-city.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/hero-wat-arun.jpg">
+<link rel="preload" as="image" href="assets/photos/night-city.jpg">
 <style>
 /* =========================================================
    Vanessa Meraki — Media Kit
@@ -114,15 +114,15 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:7rem var(--pad) clamp(2rem,5vw,3.5rem);overflow:hidden}
 .hero-bg{position:absolute;inset:-6% 0 -6% 0;z-index:0;will-change:transform}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;animation:kenburns 22s ease-in-out infinite alternate;transform-origin:50% 40%}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:30% 50%;animation:kenburns 22s ease-in-out infinite alternate;transform-origin:50% 40%}
 @keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1.18) translate(-1.5%,1%)}}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:
   linear-gradient(to bottom,rgba(20,12,10,.55) 0%,rgba(20,12,10,0) 30%,rgba(20,12,10,0) 45%,rgba(20,12,10,.85) 82%,var(--night) 100%),
   radial-gradient(120% 70% at 50% 110%,rgba(126,13,20,.55),transparent 60%)}
-.hero>*:not(.hero-bg){position:relative;z-index:2}
+.hero>*:not(.hero-bg):not(.hero-reel):not(.scroll-cue){position:relative;z-index:2}
 .hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem}
 .hero-kicker{text-shadow:0 2px 18px rgba(20,12,10,.55);font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,3vw,2.4rem);line-height:1.1;color:var(--butter)}
-.hero-title{font-family:var(--display);text-transform:uppercase;font-weight:400;line-height:.82;margin:0;font-size:clamp(4.4rem,16vw,15.5rem);letter-spacing:-.005em;display:flex;flex-direction:column;margin-top:.4em}
+.hero-title{pointer-events:none;font-family:var(--display);text-transform:uppercase;font-weight:400;line-height:.82;margin:0;font-size:clamp(4.4rem,16vw,15.5rem);letter-spacing:-.005em;display:flex;flex-direction:column;margin-top:.4em}
 .hero-title .row{display:flex;overflow:hidden;padding-top:.04em}
 .hero-title .ch{display:inline-block;transform:translateY(105%);transition:transform 1.3s var(--ease-out);transition-delay:calc(var(--i) * 55ms + 300ms)}
 .ready .hero-title .ch{transform:none}
@@ -262,20 +262,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 
 /* ---------- portfolio ---------- */
 .pf-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(3rem,6vw,5rem)}
-.pf-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.25rem;align-items:start}
-.pf-item{position:relative;border-radius:1.25rem;overflow:hidden}
-.pf-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease-out)}
-.pf-item.in:hover img{transform:scale(1.06)}
-.pf-item figcaption{position:absolute;left:1rem;bottom:1rem;right:1rem;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);z-index:2}
-.pf-item::after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(transparent,rgba(20,12,10,.7));pointer-events:none}
-.pf-1{grid-column:1/6;aspect-ratio:4/5}
-.pf-2{grid-column:6/10;aspect-ratio:9/16;margin-top:8rem}
-.pf-3{grid-column:10/13;aspect-ratio:9/16;margin-top:3rem}
-.pf-card{grid-column:1/6;margin-top:-4rem;background:var(--cherry);color:var(--cream);border-radius:1.25rem;padding:2rem;position:relative;z-index:2}
-.pf-card p{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.25}
-.pf-card small{display:block;margin-top:1.2rem;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--butter)}
 [data-speed]{will-change:transform}
-@media (max-width:900px){.pf-grid{grid-template-columns:1fr 1fr}.pf-1{grid-column:1/-1}.pf-2,.pf-3{grid-column:auto;margin-top:0}.pf-card{grid-column:1/-1;margin-top:0}}
 
 /* ---------- services (pinned horizontal) ---------- */
 .svc{padding:0;background:var(--night)}
@@ -339,6 +326,89 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .footer img{height:1.8rem;width:auto;opacity:.9}
 .giant{font-family:var(--display);text-transform:uppercase;font-size:clamp(4rem,17.5vw,17rem);line-height:.8;margin:3rem 0 -1.2rem;color:transparent;-webkit-text-stroke:1px rgba(246,235,217,.18);white-space:nowrap;user-select:none}
 
+/* ---------- reels (shared) ---------- */
+.reel{position:relative;display:block;aspect-ratio:9/16;border-radius:1.4rem;overflow:hidden;background:var(--night-2);isolation:isolate;box-shadow:0 2rem 4rem -2rem rgba(0,0,0,.6)}
+.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-out)}
+.reel:hover video{transform:scale(1.05)}
+.reel::after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(20,12,10,.75));pointer-events:none}
+.reel-tag{position:absolute;left:.9rem;right:.9rem;bottom:.9rem;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:.5rem;font-size:.66rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--cream)}
+.reel-tag i{width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;background:rgba(246,235,217,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-style:normal;transition:background .4s,transform .5s var(--ease-out)}
+.reel:hover .reel-tag i{background:var(--cherry);transform:rotate(-45deg)}
+.reel-tag i svg{width:.9rem;height:.9rem}
+.reel-live{position:absolute;top:.9rem;left:.9rem;z-index:2;display:flex;align-items:center;gap:.4rem;padding:.3rem .6rem;border-radius:99px;background:rgba(20,12,10,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream)}
+.reel-live::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:#e23b3b;animation:blink 1.4s infinite}
+.float{animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--rot,0deg))}50%{transform:translateY(-14px) rotate(var(--rot,0deg))}}
+
+/* hero floating reel */
+.hero-reel{position:absolute;z-index:1;right:calc(var(--pad) + 4vw);top:46%;width:clamp(11rem,15vw,14rem);--rot:4deg;transform-origin:center;opacity:0;translate:0 -40%;transition:opacity 1.4s var(--ease-out) 1.6s}
+.ready .hero-reel{opacity:1}
+.hero-reel .reel{border:3px solid rgba(246,235,217,.9)}
+@media (max-width:900px){.hero-reel{display:none}}
+
+/* this is us: overlapping photo */
+.us-mini{position:absolute;left:-2rem;bottom:-3rem;width:42%;aspect-ratio:4/5;border-radius:1.25rem;overflow:hidden;border:4px solid var(--night);box-shadow:0 2rem 3rem -1rem rgba(0,0,0,.5)}
+.us-mini img{width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){.us-mini{left:-.5rem;bottom:-2rem;width:38%}}
+
+/* about gallery */
+.about-gallery{display:grid;grid-template-columns:1.1fr .8fr 1fr .7fr;gap:1rem;margin-top:clamp(3rem,6vw,5rem);align-items:center}
+.about-gallery .ph{border-radius:1.25rem;overflow:hidden}
+.about-gallery .ph img{width:100%;height:100%;object-fit:cover}
+.about-gallery .ph:nth-child(1){aspect-ratio:4/3}
+.about-gallery .ph:nth-child(2){aspect-ratio:4/5}
+.about-gallery .ph:nth-child(3){aspect-ratio:4/5;margin-top:4rem}
+@media (max-width:900px){.about-gallery{grid-template-columns:1fr 1fr}.about-gallery .ph:nth-child(3){margin-top:0}}
+
+/* instagram showcase */
+.ig-show{display:grid;grid-template-columns:1.3fr .6fr 1fr;gap:1.5rem;align-items:center;margin-top:clamp(3rem,6vw,5rem)}
+.ig-show .phones img{width:100%;height:auto;filter:drop-shadow(0 2rem 3rem rgba(0,0,0,.55))}
+.ig-show .moments{display:grid;gap:1rem}
+.ig-show .moments .ph{border-radius:1.25rem;overflow:hidden;aspect-ratio:3/2}
+.ig-show .moments .ph img{width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){.ig-show{grid-template-columns:1fr 1fr}.ig-show .phones{grid-column:1/-1}}
+
+/* tripscout extras */
+.ts-brand{display:flex;align-items:center;gap:1.5rem;margin-top:1.5rem}
+.ts-brand img.logo{height:2.6rem;width:auto}
+.ts-badge{width:6.5rem;height:6.5rem;border-radius:50%;background:var(--ink);display:grid;place-items:center;flex:none}
+.ts-badge img{width:88%;animation:spin 20s linear infinite}
+.ts-show{display:grid;grid-template-columns:1.4fr .55fr .55fr;gap:1.25rem;align-items:center;margin-top:clamp(3rem,6vw,4.5rem)}
+.ts-show .phones img{width:100%;height:auto;filter:drop-shadow(0 2rem 2.5rem rgba(126,13,20,.25))}
+@media (max-width:900px){.ts-show{grid-template-columns:1fr 1fr}.ts-show .phones{grid-column:1/-1}}
+.lwt-logo{height:2.4rem;width:auto;filter:brightness(0) invert(1);opacity:.9;margin-top:1.5rem}
+
+/* reel wall (portfolio) */
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;align-items:start}
+.wall>*:nth-child(2){margin-top:5rem}
+.wall>*:nth-child(4){margin-top:3rem}
+.wall .ph{border-radius:1.4rem;overflow:hidden;aspect-ratio:9/16}
+.wall .ph img{width:100%;height:100%;object-fit:cover}
+.wall-photos{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:1.25rem;margin-top:1.25rem}
+.wall-photos .ph{border-radius:1.4rem;overflow:hidden;aspect-ratio:4/5}
+.wall-photos .ph:nth-child(2){aspect-ratio:auto}
+.wall-photos .ph img{width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){.wall{grid-template-columns:1fr 1fr}.wall>*{margin-top:0!important}.wall-photos{grid-template-columns:1fr 1fr}.wall-photos .ph:nth-child(2){grid-column:1/-1;aspect-ratio:16/10;order:-1}}
+
+/* service cards with video */
+.svc-card video{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .6s,transform 1.2s var(--ease-out)}
+.svc-card:hover video{opacity:.85;transform:scale(1.04)}
+.svc-card.has-video::after{background:linear-gradient(180deg,rgba(20,12,10,.35) 0%,rgba(20,12,10,.05) 35%,rgba(20,12,10,.6) 62%,color-mix(in srgb,var(--c1) 30%,rgba(20,12,10,.95)) 100%);z-index:0;inset:0}
+.svc-card.has-video>*:not(video){position:relative;z-index:1}
+.svc-card.has-video .rec{position:absolute}
+.svc-card.has-video .svc-icon{margin:auto 0 1.2rem}
+
+/* partners on dark */
+.partners-dark{background:var(--night);color:var(--cream)}
+.partners-dark .eyebrow{color:var(--gold)}
+.partners-dark .logo-cell{background:rgba(246,235,217,.04);box-shadow:inset 0 0 0 1px var(--line-dark)}
+.partners-dark .logo-cell:hover{background:rgba(246,235,217,.09);box-shadow:inset 0 0 0 1px rgba(209,166,78,.5)}
+.partners-dark .logo-cell img{opacity:.85}
+.partners-dark .logo-cell img.inv{filter:brightness(0) invert(1)}
+.collabs{display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:1.25rem;max-width:64rem;margin:clamp(3rem,6vw,5rem) auto 0;padding:0 var(--pad);align-items:center}
+.collabs p{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.25;color:var(--butter);margin:0}
+@media (max-width:900px){.collabs{grid-template-columns:1fr 1fr}.collabs p{grid-column:1/-1;order:-1}}
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important}
@@ -378,7 +448,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 
 <!-- ================= HERO ================= -->
 <section class="hero" aria-label="Vanessa Meraki">
-  <div class="hero-bg" data-parallax="0.25"><img src="assets/hero-wat-arun.jpg" alt="Vanessa at Wat Arun, Bangkok, at sunset" fetchpriority="high"></div>
+  <div class="hero-bg" data-parallax="0.25"><img src="assets/photos/night-city.jpg" alt="Vanessa in a red dress overlooking the Bangkok skyline at night" fetchpriority="high"></div>
 
   <div class="hero-top">
     <div class="hero-kicker fade-up" style="--d:900">Travel storytellers<br>from Thailand to the world</div>
@@ -401,6 +471,13 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
     <p class="fade-up" style="--d:1300">Creative &amp; high quality content creators · Amazing, romantic and luxury experiences</p>
     <div class="hero-stat fade-up" style="--d:1450"><b><span data-count="190" data-suffix="K">0</span></b><span>Followers</span></div>
   </div>
+  <div class="hero-reel">
+    <a class="reel float" href="https://www.instagram.com/vanessameraki" target="_blank" rel="noopener" aria-label="Watch Vanessa Meraki reels on Instagram">
+      <video data-src="assets/reels/hotel-room.mp4" poster="assets/reels/hotel-room.jpg" muted loop playsinline preload="none"></video>
+      <span class="reel-live">Reel</span>
+      <span class="reel-tag">@vanessameraki<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+    </a>
+  </div>
   <div class="scroll-cue" aria-hidden="true"></div>
 </section>
 
@@ -416,6 +493,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   <div class="wrap us-grid">
     <div class="us-media">
       <div class="img-reveal" data-rv><img src="assets/couple.jpg" alt="Vanessa and Antonio in traditional Thai dress at Wat Arun" loading="lazy" width="940" height="1672"></div>
+      <div class="us-mini rv" data-rv data-speed="-0.06" style="--d:500"><img src="assets/photos/mirror.jpg" alt="Vanessa getting ready in a boutique hotel room" loading="lazy"></div>
       <div class="us-badge" aria-hidden="true">
         <svg viewBox="0 0 100 100"><defs><path id="circ" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><text><textPath href="#circ">Thailand · Spain · Worldwide ·</textPath></text></svg>
         <b>V&amp;A</b>
@@ -472,6 +550,17 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
       </article>
     </div>
 
+    <div class="about-gallery">
+      <div class="ph img-reveal" data-rv><img src="assets/photos/horse.jpg" alt="Vanessa with a white horse at a countryside resort" loading="lazy"></div>
+      <div class="ph img-reveal" data-rv data-speed="-0.05"><img src="assets/photos/bathtub-view.jpg" alt="Bathtub with a city view in a luxury suite" loading="lazy"></div>
+      <div class="ph img-reveal" data-rv data-speed="0.05"><img src="assets/photos/reading.jpg" alt="Vanessa reading by the window of a hotel room" loading="lazy"></div>
+      <a class="reel rv" data-rv style="--d:200" href="https://www.instagram.com/p/C4vYK2BPeAn/" target="_blank" rel="noopener" aria-label="Watch reel on Instagram">
+        <video data-src="assets/reels/about.mp4" poster="assets/reels/about.jpg" muted loop playsinline preload="none"></video>
+        <span class="reel-live">Reel</span>
+        <span class="reel-tag">Watch<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+      </a>
+    </div>
+
     <div class="about-body">
       <p class="rv" data-rv>Our specialty is crafting viral videos. Thanks to our strategic and creative approach, we have amassed millions of views. We are also experts in marketing and photography, and we have worked with leading brands across Europe, Asia and America, showcasing our adaptability and success in various markets.</p>
       <p class="rv" data-rv style="--d:120">Our commitment is to elevate your vision with incredible content that drives business objectives. If you're looking for a collaboration that makes a real difference and propels your brand to the top, we are here to make it happen.</p>
@@ -507,6 +596,18 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
         <b><em>+</em><span data-count="5">0</span><em>M</em></b><span>Reach per month</span>
       </div>
     </div>
+    <div class="ig-show">
+      <div class="phones rv" data-rv><img class="float" src="assets/photos/phones-ig.webp" alt="The @vanessameraki Instagram profile on two phones" loading="lazy"></div>
+      <a class="reel rv" data-rv style="--d:150" href="https://www.instagram.com/reel/CvxIClrNe_H/" target="_blank" rel="noopener" aria-label="Watch reel on Instagram">
+        <video data-src="assets/reels/villa-tour.mp4" poster="assets/reels/villa-tour.jpg" muted loop playsinline preload="none"></video>
+        <span class="reel-live">Reel</span>
+        <span class="reel-tag">Villa tour<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+      </a>
+      <div class="moments">
+        <div class="ph img-reveal" data-rv><img src="assets/photos/stage.jpg" alt="Vanessa singing on stage at a live event" loading="lazy"></div>
+        <div class="ph img-reveal" data-rv style="--d:150"><img src="assets/photos/event.jpg" alt="Vanessa and Antonio hosting guests at an event" loading="lazy"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -526,27 +627,45 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
       <div class="rv" data-rv style="--d:120">
         <p>We work closely with destination marketing organizations and tourism boards to amplify travel content and support the hotel and hospitality industry, inspiring our audience to explore the world.</p>
         <p class="ts-quote">+120 million combined monthly reach across the Explore network.</p>
+        <div class="ts-brand">
+          <span class="ts-badge"><img src="assets/tripscout-badge.png" alt="Official ambassador of Tripscout" loading="lazy"></span>
+          <img class="logo" src="assets/tripscout.png" alt="Tripscout — part of the @hotel network" loading="lazy">
+        </div>
       </div>
     </div>
 
     <div class="accounts">
       <a class="acct rv" data-rv data-tilt href="https://instagram.com/thailand.explores" target="_blank" rel="noopener">
         <span class="acct-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        <div class="acct-top"><img class="acct-av" src="assets/avatar-thailand.jpg" alt="" width="200" height="200" loading="lazy"><div><div class="acct-name">@thailand.explores</div><div class="acct-role">Handler &amp; ambassador</div></div></div>
+        <div class="acct-top"><img class="acct-av" src="assets/avatar-thailand-explores.jpg" alt="" width="200" height="200" loading="lazy"><div><div class="acct-name">@thailand.explores</div><div class="acct-role">Handler &amp; ambassador</div></div></div>
         <b><span data-count="970">0</span>K</b><span class="lbl">Followers</span>
         <div class="acct-reach"><span class="lbl">Reach / month</span><strong>+<span data-count="50">0</span>M</strong></div>
       </a>
       <a class="acct rv" data-rv data-tilt style="--d:120" href="https://instagram.com/bangkok.explore" target="_blank" rel="noopener">
         <span class="acct-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        <div class="acct-top"><img class="acct-av" src="assets/avatar-bangkok.jpg" alt="" width="200" height="200" loading="lazy"><div><div class="acct-name">@bangkok.explore</div><div class="acct-role">Handler &amp; ambassador</div></div></div>
+        <div class="acct-top"><img class="acct-av" src="assets/avatar-bangkok-explore.jpg" alt="" width="200" height="200" loading="lazy"><div><div class="acct-name">@bangkok.explore</div><div class="acct-role">Handler &amp; ambassador</div></div></div>
         <b><span data-count="670">0</span>K</b><span class="lbl">Followers</span>
         <div class="acct-reach"><span class="lbl">Reach / month</span><strong>+<span data-count="30">0</span>M</strong></div>
       </a>
       <a class="acct rv" data-rv data-tilt style="--d:240" href="https://instagram.com/spainexplore" target="_blank" rel="noopener">
         <span class="acct-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        <div class="acct-top"><span class="acct-av" aria-hidden="true">SPAIN</span><div><div class="acct-name">@spainexplore</div><div class="acct-role">Ambassador</div></div></div>
+        <div class="acct-top"><img class="acct-av" src="assets/avatar-spain-explore.jpg" alt="" width="200" height="200" loading="lazy"><div><div class="acct-name">@spainexplore</div><div class="acct-role">Ambassador</div></div></div>
         <b><span data-count="930">0</span>K</b><span class="lbl">Followers</span>
         <div class="acct-reach"><span class="lbl">Reach / month</span><strong>+<span data-count="40">0</span>M</strong></div>
+      </a>
+    </div>
+
+    <div class="ts-show">
+      <div class="phones rv" data-rv><img class="float" style="--rot:-2deg" src="assets/photos/phones-explore.webp" alt="Thailand, Bangkok and Spain Explore Instagram profiles on phones" loading="lazy"></div>
+      <div class="reel rv" data-rv style="--d:120">
+        <video data-src="assets/reels/drone-sea.mp4" poster="assets/reels/drone-sea.jpg" muted loop playsinline preload="none"></video>
+        <span class="reel-live">Reel</span>
+        <span class="reel-tag">Explore network</span>
+      </div>
+      <a class="reel rv" data-rv style="--d:240" href="https://www.instagram.com/reel/C0KQpQvsFny/" target="_blank" rel="noopener" aria-label="Watch reel on Instagram">
+        <video data-src="assets/reels/creative.mp4" poster="assets/reels/creative.jpg" muted loop playsinline preload="none"></video>
+        <span class="reel-live">Reel</span>
+        <span class="reel-tag">Watch<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
       </a>
     </div>
   </div>
@@ -557,6 +676,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   <div class="wrap lwt-grid">
     <div class="lwt-copy">
       <span class="eyebrow rv" data-rv><span class="sec-num">05</span>Ambassador of Luxury World Traveler</span>
+      <div class="rv" data-rv><img class="lwt-logo" src="assets/luxury-world-traveler.png" alt="Luxury World Traveler" loading="lazy"></div>
       <div class="lwt-big" data-rv aria-label="3.1 million followers">3,1M<span class="fill" aria-hidden="true">3,1M</span></div>
       <p class="rv" data-rv style="letter-spacing:.25em;text-transform:uppercase;font-size:.8rem;color:var(--gold)">Followers</p>
       <h3 class="rv" data-rv>The future of social media marketing is here!</h3>
@@ -586,7 +706,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 
 <!-- ================= CAMPAIGN QUOTE ================= -->
 <section class="section quote" id="campaign">
-  <div class="quote-bg" aria-hidden="true"><img src="assets/sunset.jpg" alt="" data-parallax="-0.15" loading="lazy"></div>
+  <div class="quote-bg" aria-hidden="true"><img src="assets/photos/temple-garden.jpg" alt="" data-parallax="-0.15" loading="lazy"></div>
   <div class="wrap">
     <span class="eyebrow rv" data-rv><span class="sec-num">06</span>Campaign</span>
     <p class="quote-text" data-quote>
@@ -609,14 +729,28 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
       <a class="btn" style="background:var(--ink);color:var(--cream)" href="https://instagram.com/vanessameraki" target="_blank" rel="noopener">See more on Instagram
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
-    <div class="pf-grid">
-      <figure class="pf-item pf-1 img-reveal" data-rv style="margin:0"><img src="assets/hero-wat-arun.jpg" alt="Vanessa at Wat Arun" loading="lazy"><figcaption><span>Wat Arun · Bangkok</span><span>Photo</span></figcaption></figure>
-      <figure class="pf-item pf-2 img-reveal" data-rv data-speed="-0.08" style="margin:0"><img src="assets/couple.jpg" alt="Vanessa and Antonio in Thai dress" loading="lazy"><figcaption><span>Culture</span><span>Reel</span></figcaption></figure>
-      <figure class="pf-item pf-3 img-reveal" data-rv data-speed="0.06" style="margin:0"><img src="assets/sunset.jpg" alt="Vanessa at sunset in a Bangkok temple" loading="lazy"><figcaption><span>Golden hour</span><span>Reel</span></figcaption></figure>
-      <div class="pf-card rv" data-rv>
-        <p>Professional photography, genuine recommendations and an extraordinary lifestyle — told through our eyes.</p>
-        <small>Vanessa Meraki · Creative</small>
-      </div>
+    <div class="wall">
+      <a class="reel rv" data-rv style="--d:0" href="https://www.instagram.com/reel/Cu13a9UtJK8/" target="_blank" rel="noopener" aria-label="Watch Island drone reel on Instagram">
+        <video data-src="assets/reels/beach-drone.mp4" poster="assets/reels/beach-drone.jpg" muted loop playsinline preload="none"></video>
+        <span class="reel-live">Reel</span>
+        <span class="reel-tag">Island drone<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+      </a>
+      <div class="ph img-reveal" data-rv data-speed="-0.06"><img src="assets/photos/vintage-car.jpg" alt="Vanessa in a vintage car in a tropical garden" loading="lazy"></div>
+      <a class="reel rv" data-rv style="--d:120" href="https://www.instagram.com/reel/C4uRlmTvwAw/" target="_blank" rel="noopener" aria-label="Watch Boho setup reel on Instagram">
+        <video data-src="assets/reels/boho.mp4" poster="assets/reels/boho.jpg" muted loop playsinline preload="none"></video>
+        <span class="reel-live">Reel</span>
+        <span class="reel-tag">Boho setup<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+      </a>
+      <a class="reel rv" data-rv style="--d:240" href="https://www.instagram.com/reel/CydqHu1sBlZ/" target="_blank" rel="noopener" aria-label="Watch Pool villa reel on Instagram">
+        <video data-src="assets/reels/villa-pool.mp4" poster="assets/reels/villa-pool.jpg" muted loop playsinline preload="none"></video>
+        <span class="reel-live">Reel</span>
+        <span class="reel-tag">Pool villa<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+      </a>
+    </div>
+    <div class="wall-photos">
+      <div class="ph img-reveal" data-rv><img src="assets/photos/bath.jpg" alt="Vanessa in a flower bath" loading="lazy"></div>
+      <div class="ph img-reveal" data-rv style="--d:120"><img src="assets/hero-wat-arun.jpg" alt="Vanessa at Wat Arun, Bangkok" loading="lazy" style="object-position:50% 40%"></div>
+      <div class="ph img-reveal" data-rv style="--d:240"><img src="assets/photos/pool-hat.jpg" alt="Vanessa relaxing by an infinity pool" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -633,27 +767,32 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
         <div class="svc-progress" aria-hidden="true"><i id="svcBar"></i></div>
       </div>
       <div class="svc-track" id="svcTrack">
-        <article class="svc-card" style="--c1:#A3161F;--c2:#FFEDA8">
+        <article class="svc-card has-video" style="--c1:#A3161F;--c2:#FFEDA8">
+          <video data-src="assets/reels/creative.mp4" poster="assets/reels/creative.jpg" muted loop playsinline preload="none"></video>
           <span class="n">01</span><span class="rec">Rec</span>
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9.4l-4.2 1.8L12 16l-1.8-4.8L6 9.4l4.2-1.8z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8zM5 16l.6 1.4L7 18l-1.4.6L5 20l-.6-1.4L3 18l1.4-.6z"/></svg></div>
           <div><h3>Creative reels</h3><p>Transitions, special effects, cuts and green screen make content visually stunning and engaging.</p></div>
         </article>
-        <article class="svc-card" style="--c1:#D1A64E;--c2:#D1A64E">
+        <article class="svc-card has-video" style="--c1:#D1A64E;--c2:#D1A64E">
+          <video data-src="assets/reels/music.mp4" poster="assets/reels/music.jpg" muted loop playsinline preload="none"></video>
           <span class="n">02</span><span class="rec">Rec</span>
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
           <div><h3>Music reels</h3><p>Music and rhythm grab attention quickly, creating an emotional connection that stands out visually.</p></div>
         </article>
-        <article class="svc-card" style="--c1:#2F6E73;--c2:#9fd3cf">
+        <article class="svc-card has-video" style="--c1:#2F6E73;--c2:#9fd3cf">
+          <video data-src="assets/reels/hotel.mp4" poster="assets/reels/hotel.jpg" muted loop playsinline preload="none"></video>
           <span class="n">03</span><span class="rec">Rec</span>
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M9 10h.01M15 10h.01M9 13h.01M15 13h.01"/></svg></div>
           <div><h3>Hotel reels</h3><p>Stunning visuals of atmosphere, amenities and breathtaking drone shots that inspire potential guests.</p></div>
         </article>
-        <article class="svc-card" style="--c1:#B4532A;--c2:#f2b48f">
+        <article class="svc-card has-video" style="--c1:#B4532A;--c2:#f2b48f">
+          <video data-src="assets/reels/ugc.mp4" poster="assets/reels/ugc.jpg" muted loop playsinline preload="none"></video>
           <span class="n">04</span><span class="rec">Rec</span>
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
           <div><h3>UGC reels</h3><p>User-generated content brings authenticity and credibility, showcasing real experiences from genuine users.</p></div>
         </article>
-        <article class="svc-card" style="--c1:#6B3F7A;--c2:#d8b4e6">
+        <article class="svc-card has-video" style="--c1:#6B3F7A;--c2:#d8b4e6">
+          <video data-src="assets/reels/voice-over.mp4" poster="assets/reels/voice-over.jpg" muted loop playsinline preload="none"></video>
           <span class="n">05</span><span class="rec">Rec</span>
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/></svg></div>
           <div><h3>Voice-over reels</h3><p>A clear, engaging narrative — perfect for explaining complex products or services and guiding the audience.</p></div>
@@ -668,30 +807,61 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 </section>
 
 <!-- ================= PARTNERS ================= -->
-<section class="section light partners" id="partners">
+<section class="section partners partners-dark" id="partners">
   <div class="partners-head">
     <span class="eyebrow rv" data-rv><span class="sec-num">09</span>Partners</span>
     <h2 class="h-display h-l" data-rv><span class="line-mask"><span>Brand &amp; <em class="script">agreement</em></span></span></h2>
   </div>
   <div class="logo-row">
     <div class="logo-track">
-      <div class="logo-cell"><img src="assets/brands/amazing-thailand.png" alt="Amazing Thailand" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/anantara-group.png" alt="Anantara Group" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/marriott.png" alt="Marriott" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/hilton.png" alt="Hilton" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/banyan-tree.png" alt="Banyan Tree" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/alain-ducasse-paris.png" alt="Alain Ducasse Paris" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/accor.png" alt="Accor" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/marriott.png" alt="Marriott" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/hilton.png" alt="Hilton" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/conrad.png" alt="Conrad Hotels & Resorts" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/shangri-la.png" alt="Shangri-La" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/st-regis.png" alt="St. Regis" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/movenpick.png" alt="Mövenpick Hotels & Resorts" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/holiday-inn.png" alt="Holiday Inn" loading="lazy"></div>
     </div>
   </div>
   <div class="logo-row rev">
     <div class="logo-track">
-      <div class="logo-cell"><img src="assets/brands/iconsiam.png" alt="Iconsiam" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/kbank.png" alt="KBank" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/singha.png" alt="Singha" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/aura-bangkok-clinic.png" alt="Aura Bangkok Clinic" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/centralworld.png" alt="centralwOrld" loading="lazy"></div>
-      <div class="logo-cell"><img src="assets/brands/royal-jordanian.png" alt="Royal Jordanian" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/rotana.png" alt="Rotana" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/msc-cruises.png" alt="MSC Cruises" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/experience-abu-dhabi.png" alt="Experience Abu Dhabi" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/ykone.png" alt="Ykone" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/at-hotel.png" alt="@hotel" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/tripscout.png" alt="Tripscout" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/pikolinos.png" alt="Pikolinos" loading="lazy"></div>
+      <div class="logo-cell"><img src="assets/partners/pitusa.png" alt="Pitusa" loading="lazy"></div>
     </div>
+  </div>
+  <div class="logo-row">
+    <div class="logo-track">
+      <div class="logo-cell"><img class="inv" src="assets/brands/amazing-thailand.png" alt="Amazing Thailand" loading="lazy"></div>
+      <div class="logo-cell"><img class="inv" src="assets/brands/anantara-group.png" alt="Anantara Group" loading="lazy"></div>
+      <div class="logo-cell"><img class="inv" src="assets/brands/banyan-tree.png" alt="Banyan Tree" loading="lazy"></div>
+      <div class="logo-cell"><img class="inv" src="assets/brands/alain-ducasse-paris.png" alt="Alain Ducasse Paris" loading="lazy"></div>
+      <div class="logo-cell"><img class="inv" src="assets/brands/iconsiam.png" alt="Iconsiam" loading="lazy"></div>
+      <div class="logo-cell"><img class="inv" src="assets/brands/kbank.png" alt="KBank" loading="lazy"></div>
+      <div class="logo-cell"><img class="inv" src="assets/brands/singha.png" alt="Singha" loading="lazy"></div>
+      <div class="logo-cell"><img class="inv" src="assets/brands/centralworld.png" alt="centralwOrld" loading="lazy"></div>
+      <div class="logo-cell"><img class="inv" src="assets/brands/royal-jordanian.png" alt="Royal Jordanian" loading="lazy"></div>
+      <div class="logo-cell"><img class="inv" src="assets/brands/aura-bangkok-clinic.png" alt="Aura Bangkok Clinic" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="collabs">
+      <a class="reel rv" data-rv style="--d:0" href="https://www.instagram.com/reel/CydqHu1sBlZ/" target="_blank" rel="noopener" aria-label="Watch Hotel collab reel on Instagram">
+        <video data-src="assets/reels/partner-villa.mp4" poster="assets/reels/partner-villa.jpg" muted loop playsinline preload="none"></video>
+        <span class="reel-live">Reel</span>
+        <span class="reel-tag">Hotel collab<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+      </a>
+      <a class="reel rv" data-rv style="--d:120" href="https://www.instagram.com/reel/CvuiqEcOBsj/" target="_blank" rel="noopener" aria-label="Watch Resort collab reel on Instagram">
+        <video data-src="assets/reels/partner-breakfast.mp4" poster="assets/reels/partner-breakfast.jpg" muted loop playsinline preload="none"></video>
+        <span class="reel-live">Reel</span>
+        <span class="reel-tag">Resort collab<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+      </a>
+      <p class="rv" data-rv style="--d:200">Hotels, resorts, cruises, destinations and lifestyle brands across Europe, Asia and America trust us to tell their story.</p>
   </div>
 </section>
 
@@ -800,6 +970,25 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
     });
   }, { threshold: .18, rootMargin: '0px 0px -6% 0px' });
   $$('[data-rv], .feature, .acct, .stats').forEach(el => io.observe(el));
+  /* ---- reels: load when near the viewport, play only while visible ---- */
+  const vio = new IntersectionObserver((entries) => {
+    entries.forEach(({ target: v, isIntersecting }) => {
+      if (isIntersecting) {
+        if (!v.src) { v.src = v.dataset.src; v.load(); }
+        if (!reduce) v.play().catch(() => {});
+      } else if (!v.paused) v.pause();
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.01 });
+  $$('video[data-src]').forEach(v => vio.observe(v));
+  if (reduce) {
+    // no autoplay: hover/focus to preview instead
+    $$('video[data-src]').forEach(v => {
+      const host = v.closest('a, article, .reel') || v;
+      host.addEventListener('pointerenter', () => { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); });
+      host.addEventListener('pointerleave', () => v.pause());
+    });
+  }
+
   // hero counter
   const heroCount = $('.hero [data-count]');
   setTimeout(() => count(heroCount), reduce ? 0 : 2200);
