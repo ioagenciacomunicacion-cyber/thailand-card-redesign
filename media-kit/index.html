@@ -38,7 +38,7 @@
   --sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;background:var(--night)}
+html{-webkit-text-size-adjust:100%;background:var(--night);overflow-x:clip}
 body{margin:0;background:var(--night);color:var(--cream);font-family:var(--sans);font-weight:400;font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -75,9 +75,12 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .line-mask>span{display:inline-block;transform:translateY(105%);transition:transform 1.25s var(--ease-out);transition-delay:calc(var(--d,0) * 1ms)}
 .in .line-mask>span,.line-mask.in>span{transform:none}
 /* clip lives on the <img>, not the observed element: IntersectionObserver treats a fully clipped target as not visible */
-.img-reveal{position:relative;overflow:hidden}
-.img-reveal img{clip-path:inset(100% 0 0 0);transform:scale(1.25);transition:clip-path 1.6s var(--ease-io),transform 2.2s var(--ease-out)}
-.img-reveal.in img{clip-path:inset(0 0 0 0);transform:scale(1)}
+.img-reveal{position:relative;overflow:hidden;--curtain:var(--night)}
+.light .img-reveal{--curtain:var(--cream)}
+.img-reveal::before{content:"";position:absolute;inset:-1px;z-index:3;background:var(--curtain);transform-origin:top;transition:transform 1.4s var(--ease-io);pointer-events:none}
+.img-reveal.in::before{transform:scaleY(0)}
+.img-reveal img{transform:scale(1.2);transition:transform 2.2s var(--ease-out)}
+.img-reveal.in img{transform:scale(1)}
 .img-reveal figcaption,.img-reveal::after{opacity:0;transition:opacity .8s 1s}
 .img-reveal.in figcaption,.img-reveal.in::after{opacity:1}
 
@@ -424,12 +427,69 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .still figcaption{position:absolute;left:.9rem;right:.9rem;bottom:.8rem;z-index:2;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream)}
 .still::after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(20,12,10,.7));pointer-events:none}
 
+/* ---------- mobile-first: menu, sticky contact bar, touch ---------- */
+.burger{display:none;position:relative;width:2.9rem;height:2.9rem;border-radius:50%;border:0;background:rgba(246,235,217,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream);cursor:pointer;flex:none}
+.burger i{position:absolute;left:50%;width:1.1rem;height:1.5px;background:currentColor;border-radius:2px;translate:-50% 0;transition:transform .5s var(--ease-out),top .5s var(--ease-out)}
+.burger i:first-child{top:42%}.burger i:last-child{top:58%}
+.menu-open .burger i:first-child{top:50%;transform:rotate(45deg)}
+.menu-open .burger i:last-child{top:50%;transform:rotate(-45deg)}
+.nav-right{display:flex;align-items:center;gap:.6rem}
+.mnav{position:fixed;inset:0;z-index:49;background:var(--cherry-deep);color:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:6rem var(--pad) calc(2rem + env(safe-area-inset-bottom,0px));clip-path:circle(0% at calc(100% - 2.6rem) 2.6rem);transition:clip-path .8s var(--ease-io);visibility:hidden}
+.menu-open .mnav{clip-path:circle(150% at calc(100% - 2.6rem) 2.6rem);visibility:visible}
+.mnav a.l{display:flex;align-items:baseline;gap:1rem;font-family:var(--display);font-size:clamp(2.6rem,12vw,4rem);line-height:1.08;text-transform:uppercase;opacity:0;transform:translateY(1.5rem);transition:opacity .6s var(--ease-out),transform .8s var(--ease-out);transition-delay:calc(var(--i) * 60ms + 250ms)}
+.mnav a.l small{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--butter);text-transform:none}
+.menu-open .mnav a.l{opacity:1;transform:none}
+.mnav-foot{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.5rem}
+.mnav-foot a{padding:.85rem 1.2rem;border-radius:99px;box-shadow:inset 0 0 0 1px rgba(246,235,217,.35);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase}
+.menu-open{overflow:hidden}
+
+.mbar{position:fixed;left:.75rem;right:.75rem;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));z-index:45;display:none;gap:.5rem;padding:.45rem;border-radius:99px;background:rgba(20,12,10,.82);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);box-shadow:0 1rem 2rem -.5rem rgba(0,0,0,.5),inset 0 0 0 1px var(--line-dark);transform:translateY(160%);transition:transform .6s var(--ease-out)}
+.mbar.show{transform:none}
+.mbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;border-radius:99px;font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--cream)}
+.mbar a.primary{background:var(--butter);color:var(--ink)}
+.mbar svg{width:1.05rem;height:1.05rem;flex:none}
+
+.swipe-hint{display:none;align-items:center;gap:.5rem;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.swipe-hint i{display:inline-block;width:1.6rem;height:1px;background:currentColor;position:relative;animation:swipe 1.8s var(--ease-io) infinite}
+@keyframes swipe{0%{transform:translateX(0)}50%{transform:translateX(.5rem)}100%{transform:translateX(0)}}
+
+@media (max-width:900px){
+  .burger{display:block}
+  .nav{padding-top:calc(env(safe-area-inset-top,0px) + .75rem);padding-bottom:.75rem}
+  .nav .btn{padding:.75rem 1.1rem}
+  .mbar{display:flex}
+  .swipe-hint{display:inline-flex}
+  .chip{padding:.7rem 1rem;font-size:.68rem}
+  .contact-links .btn{min-height:3rem}
+  .footer{padding-bottom:5.5rem}
+  .section{padding-top:4.5rem;padding-bottom:4.5rem}
+  .hero{padding-bottom:2.25rem}
+  .scrub-text{font-size:1.2rem}
+}
+@media (max-width:420px){.nav .btn span.long{display:none}}
+@media (max-width:640px){
+  .hero{padding-top:5.25rem}
+  .hero-top{gap:.9rem;margin-bottom:1rem}
+  .hero-kicker{font-size:1.3rem}
+  .platforms{gap:.4rem;flex-wrap:nowrap}
+  .chip{padding:.62rem .75rem;font-size:.6rem;letter-spacing:.12em;gap:.4rem}
+  .chip svg{width:.9rem;height:.9rem}
+  .hero-title{font-size:clamp(4rem,21vw,6.5rem)}
+  .hero-foot{margin-top:1.2rem;padding-top:1rem;gap:1rem}
+  .hero-foot p{font-size:.78rem;line-height:1.6}
+  .hero-stat b{font-size:2.4rem}
+}
+@media (hover:none){
+  .feature:hover::before{transform:scaleY(0)}
+  .feature:hover{color:inherit}
+}
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important}
   .rv,.hero .fade-up{opacity:1;transform:none}
   .line-mask>span,.hero-title .ch{transform:none}
-  .img-reveal{clip-path:none}.img-reveal img{transform:none}
+  .img-reveal::before{display:none}.img-reveal img{transform:none}
   .scrub-text .w,.quote-text .qw{opacity:1;color:inherit}
   .marquee-track,.logo-track,.stills-track{animation:none}
   body::after{display:none}
@@ -454,10 +514,33 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
     <a href="#services">Services</a>
     <a href="#partners">Partners</a>
   </nav>
-  <a class="btn" href="#contact">Let's collab
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-  </a>
+  <div class="nav-right">
+    <a class="btn" href="#contact"><span class="long">Let's&nbsp;</span>collab
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button>
+  </div>
 </header>
+
+<nav class="mnav" id="mnav" aria-label="Menu">
+  <a class="l" href="#us" style="--i:0"><small>01</small>About</a>
+  <a class="l" href="#stats" style="--i:1"><small>03</small>Audience</a>
+  <a class="l" href="#ambassador" style="--i:2"><small>04</small>Ambassador</a>
+  <a class="l" href="#portfolio" style="--i:3"><small>07</small>Portfolio</a>
+  <a class="l" href="#services" style="--i:4"><small>08</small>Services</a>
+  <a class="l" href="#partners" style="--i:5"><small>09</small>Partners</a>
+  <a class="l" href="#contact" style="--i:6"><small>10</small>Contact</a>
+  <div class="mnav-foot">
+    <a href="https://instagram.com/vanessameraki" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@vanessameraki" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://wa.me/34653964281" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</nav>
+
+<div class="mbar" id="mbar">
+  <a href="https://wa.me/34653964281" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3 1 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2 .7 2.8.6.4-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>WhatsApp</a>
+  <a class="primary" href="mailto:collab@vanessameraki.com?subject=Collaboration%20with%20Vanessa%20Meraki"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email us</a>
+</div>
 
 <main id="top">
 
@@ -804,6 +887,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
           <span class="eyebrow"><span class="sec-num">08</span>Unique services</span>
           <h2 class="h-display h-l" style="margin-top:1rem">Creative <em class="script">style</em></h2>
         </div>
+        <span class="swipe-hint" aria-hidden="true">Swipe <i></i></span>
         <div class="svc-progress" aria-hidden="true"><i id="svcBar"></i></div>
       </div>
       <div class="svc-track" id="svcTrack">
@@ -1033,6 +1117,23 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   const heroCount = $('.hero [data-count]');
   setTimeout(() => count(heroCount), reduce ? 0 : 2200);
 
+
+  /* ---- mobile menu ---- */
+  const burger = $('#burger'), root = document.documentElement;
+  const setMenu = (open) => { root.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); };
+  burger.addEventListener('click', () => setMenu(!root.classList.contains('menu-open')));
+  $$('#mnav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  /* ---- sticky contact bar (phones): after the hero, hidden at the contact section ---- */
+  const mbar = $('#mbar'), contact = $('#contact');
+  const barTick = () => {
+    const past = scrollY > innerHeight * .7;
+    const atContact = contact.getBoundingClientRect().top < innerHeight * .9;
+    mbar.classList.toggle('show', past && !atContact);
+  };
+  addEventListener('scroll', barTick, { passive: true }); barTick();
+
   /* ---- nav hide/show ---- */
   const nav = $('#nav'); let lastY = scrollY;
 
@@ -1059,7 +1160,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
     ticking = false;
     const y = scrollY;
     nav.classList.toggle('scrolled', y > 40);
-    nav.classList.toggle('hide', y > lastY && y > innerHeight * .8);
+    nav.classList.toggle('hide', !root.classList.contains('menu-open') && y > lastY && y > innerHeight * .8);
     lastY = y;
     if (reduce) return;
 
